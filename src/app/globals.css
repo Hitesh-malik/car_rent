@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Design tokens ───────────────────────── */
+@theme {
+  --color-canvas: #ffffff;
+  --color-mist: #f7f8fa; /* secondary background */
+  --color-surface: #f2f4f7; /* card surface */
+  --color-ink: #17191d; /* primary type */
+  --color-ink-soft: #3a3e45;
+  --color-muted: #737983; /* secondary type */
+  --color-line: #e7e9ed; /* borders */
+  --color-accent: #2563eb;
+  --color-accent-strong: #1d4ed8;
+  --color-accent-soft: #eaf0fe;
+  --color-whatsapp: #1fa855;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+
+  --shadow-soft: 0 1px 2px rgb(23 25 29 / 0.04), 0 8px 24px -12px rgb(23 25 29 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(23 25 29 / 0.04), 0 24px 48px -20px rgb(23 25 29 / 0.22);
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  @keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  /* Anchor targets clear the sticky header */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+@utility skeleton {
+  background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 50%, #eef0f3 75%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ───────────────────────── Hero entrance (pure CSS → no JS on the LCP path) ───────────────────────── */
+@utility hero-line {
+  display: block;
+  animation: hero-line 900ms var(--ease-out-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+@utility hero-fade {
+  animation: hero-fade 800ms var(--ease-out-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+@utility hero-car {
+  animation: hero-car 1100ms var(--ease-out-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes hero-line {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-car {
+  from {
+    opacity: 0.001;
+    transform: translateX(48px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ───────────────────────── View transitions (route changes) ───────────────────────── */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Header stays anchored while page content transitions */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* Shared car image: card → detail morph */
+::view-transition-group(.morph) {
+  animation-duration: 480ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+@keyframes via-blur {
+  35% {
+    filter: blur(2px);
+  }
+}
+
+/* Page content: quick fade out, gentle rise in */
+::view-transition-old(.page) {
+  animation: 160ms ease-in both vt-fade reverse;
+}
+::view-transition-new(.page) {
+  animation:
+    260ms ease-out 120ms both vt-fade,
+    480ms cubic-bezier(0.22, 1, 0.36, 1) both vt-rise;
+}
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes vt-rise {
+  from {
+    translate: 0 14px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+/* ───────────────────────── Reduced motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
