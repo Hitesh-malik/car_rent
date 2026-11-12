@@ -47,9 +47,9 @@ function StudioLights() {
     <>
       <ambientLight intensity={0.25} />
       <directionalLight position={[4, 8, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
-      <pointLight position={[-5, 1.2, -4]} intensity={18} color="#d83a4e" distance={14} />
+      <pointLight position={[-5, 1.2, -4]} intensity={18} color="#bd394a" distance={14} />
       <Environment resolution={256} frames={1}>
-        <color attach="background" args={["#151619"]} />
+        <color attach="background" args={["#19191c"]} />
         <group rotation={[-Math.PI / 3, 0, 0]}>
           <Lightformer form="rect" intensity={3} position={[0, 5, -9]} scale={[10, 10, 1]} />
           {[2, 0, 2, 0, 2, 0].map((x, i) => (
@@ -57,8 +57,8 @@ function StudioLights() {
           ))}
           <Lightformer form="rect" intensity={1.4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[50, 2, 1]} />
           {/* red light strips — reflect along the bodywork */}
-          <Lightformer form="rect" color="#d83a4e" intensity={5} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[50, 1.5, 1]} />
-          <Lightformer form="ring" color="#d83a4e" intensity={3} position={[-6, 3, 6]} scale={3} />
+          <Lightformer form="rect" color="#bd394a" intensity={5} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[50, 1.5, 1]} />
+          <Lightformer form="ring" color="#bd394a" intensity={3} position={[-6, 3, 6]} scale={3} />
         </group>
       </Environment>
     </>
@@ -153,12 +153,12 @@ export default function CarViewer3D({
   return (
     <ModelErrorBoundary fallback={failed}>
       <div
-        className={`relative overflow-hidden rounded-[var(--radius-panel)] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_55%_at_50%_72%,#211f23_0%,#1b1c20_45%,#151619_100%)] ${className ?? "aspect-[4/3] sm:aspect-[16/10]"}`}
+        className={`relative overflow-hidden rounded-[var(--radius-panel)] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_55%_at_50%_72%,#252327_0%,#1f1f23_45%,#19191c_100%)] ${className ?? "aspect-[4/3] sm:aspect-[16/10]"}`}
         role="img"
         aria-label={`Interactive 3D model${model.isRepresentative ? " (representative sample)" : ""} for the ${name}. Drag to rotate, scroll or pinch to zoom.`}
       >
         {/* floor light + horizon line */}
-        <div aria-hidden className="pointer-events-none absolute inset-x-[15%] bottom-[16%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,rgb(216_58_78/0.11),transparent)] blur-xl" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-[15%] bottom-[16%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,rgb(189_57_74/0.11),transparent)] blur-xl" />
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[62%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <Canvas
           frameloop="demand"

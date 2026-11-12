@@ -38,7 +38,7 @@ export function FeaturedFleet() {
               <li key={c} className="shrink-0">
                 <Link
                   href={`/cars?category=${encodeURIComponent(c)}`}
-                  className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink-soft transition-[border-color,color,box-shadow] duration-200 hover:border-racing/50 hover:text-ink hover:shadow-[var(--shadow-lift)]"
+                  className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink-soft transition-[border-color,color,box-shadow] duration-200 hover:border-racing/30 hover:bg-rose hover:text-ink"
                 >
                   <span aria-hidden className="size-1.5 rounded-full bg-racing" />
                   {CATEGORY_META[c].label}

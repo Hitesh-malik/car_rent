@@ -262,9 +262,9 @@ export function StudioViewer({
       <div className={cn("relative isolate", isFs ? "min-h-0 flex-1" : "aspect-[4/3.3] sm:aspect-[16/9.6]")}>
         {/* studio: deep black, charcoal floor, soft red ambient behind the car */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#222328_0%,#151619_72%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#27272c_0%,#19191c_72%)]" />
           <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-b from-transparent to-charcoal" />
-          <div className="absolute left-1/2 top-1/2 h-[62%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.1),transparent)] blur-2xl" />
+          <div className="absolute left-1/2 top-1/2 h-[62%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(189_57_74/0.1),transparent)] blur-2xl" />
           <div className="absolute inset-x-[8%] top-[74%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 

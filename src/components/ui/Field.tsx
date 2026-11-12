@@ -47,8 +47,8 @@ export function inputClasses({ tone = "light", invalid = false }: { tone?: Tone;
   return cn(
     "h-12 w-full min-w-0 rounded-xl border px-3.5 text-[15px] font-medium outline-none transition-[border-color,box-shadow,background-color] duration-200",
     tone === "dark"
-      ? "border-white/10 bg-white/[0.04] text-white [color-scheme:dark] placeholder:text-white/55 hover:border-white/20 focus:border-bright focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgb(216_58_78/0.06)]"
-      : "border-line bg-mist text-ink [color-scheme:light] placeholder:text-muted/70 hover:border-ink/20 focus:border-racing focus:bg-white focus:shadow-[0_0_0_4px_rgb(216_58_78/0.05)]",
-    invalid && (tone === "dark" ? "border-soft-red/70" : "border-racing/70"),
+      ? "border-white/35 bg-white/[0.04] text-white [color-scheme:dark] placeholder:text-white/55 hover:border-white/50 focus:border-soft-red focus:bg-white/[0.06] focus:shadow-[0_0_0_4px_rgb(189_57_74/0.06)]"
+      : "border-field bg-white text-ink [color-scheme:light] placeholder:text-muted hover:border-ink/60 focus:border-racing focus:bg-white focus:shadow-[0_0_0_4px_rgb(189_57_74/0.05)]",
+    invalid && (tone === "dark" ? "border-soft-red" : "border-racing"),
   );
 }

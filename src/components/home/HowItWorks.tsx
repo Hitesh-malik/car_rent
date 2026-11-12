@@ -51,12 +51,14 @@ export function HowItWorks() {
                 transition={{ duration: 0.7, ease: EASE_OUT, delay: i * 0.12 }}
                 className="relative flex origin-top gap-5 lg:block"
               >
-                <span className="relative z-10 inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-night font-[family-name:var(--font-display)] text-base font-extrabold tabular-nums text-white shadow-[0_12px_30px_-12px_rgb(21_22_25/0.7)] ring-4 ring-white">
+                <span className="relative z-10 inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-night font-[family-name:var(--font-display)] text-base font-extrabold tabular-nums text-white shadow-[0_12px_30px_-12px_rgb(25_25_28/0.7)] ring-4 ring-white">
                   {s.n}
                   <span aria-hidden className="absolute -right-1 -top-1 size-3 rounded-full bg-bright " />
                 </span>
                 <div className="flex-1 rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-[var(--shadow-soft)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-racing/30 hover:shadow-[var(--shadow-lift)] lg:mt-8">
-                  <s.icon className="size-6 text-racing" strokeWidth={1.7} aria-hidden />
+                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-rose text-racing-deep">
+                    <s.icon className="size-5" strokeWidth={1.8} aria-hidden />
+                  </span>
                   <h3 className="mt-4 text-xl font-bold tracking-[-0.025em] text-ink">{s.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-soft/80">{s.body}</p>
                 </div>

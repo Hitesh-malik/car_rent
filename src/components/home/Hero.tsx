@@ -16,8 +16,8 @@ export function Hero() {
       {/* ── lighting ── */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,black,transparent)]" />
-        <div className="absolute right-[-10%] top-[18%] h-[38rem] w-[52rem] rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.15),transparent)] blur-2xl" />
-        <div className="absolute -left-40 bottom-0 h-[26rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgb(142_42_55/0.16),transparent)] blur-2xl" />
+        <div className="absolute right-[-10%] top-[18%] h-[38rem] w-[52rem] rounded-full bg-[radial-gradient(closest-side,rgb(189_57_74/0.15),transparent)] blur-2xl" />
+        <div className="absolute -left-40 bottom-0 h-[26rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgb(125_37_49/0.16),transparent)] blur-2xl" />
         <div className="grain absolute inset-0 opacity-[0.06] mix-blend-overlay" />
       </div>
 

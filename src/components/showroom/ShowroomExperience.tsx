@@ -78,7 +78,7 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
       {/* ═════════ STUDIO (dark) ═════════ */}
       <section aria-labelledby="showroom-heading" className="stage-dark relative isolate overflow-clip text-white">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-[30%] h-[36rem] w-[70rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.06),transparent)] blur-2xl" />
+          <div className="absolute left-1/2 top-[30%] h-[36rem] w-[70rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(189_57_74/0.06),transparent)] blur-2xl" />
           <div className="grain absolute inset-0 opacity-[0.05] mix-blend-overlay" />
         </div>
 
@@ -348,7 +348,7 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                 style={{ objectPosition: car.images[0].focus ?? "50% 55%" }}
               />
             )}
-            <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#151619_0%,#151619_35%,rgb(21_22_25/0.6)_60%,rgb(21_22_25/0.2)_85%,rgb(216_58_78/0.08)_100%)]" />
+            <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#19191c_0%,#19191c_35%,rgb(25_25_28/0.6)_60%,rgb(25_25_28/0.2)_85%,rgb(189_57_74/0.08)_100%)]" />
             <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-racing via-racing-deep to-transparent" />
             <div className="max-w-lg">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-soft-red">{name}</p>

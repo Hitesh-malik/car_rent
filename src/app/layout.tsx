@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/layout/BackToTop";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#151619",
+  themeColor: "#19191c",
   colorScheme: "light",
 };
 
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <Footer />
+          <BackToTop />
         </MotionProvider>
       </body>
     </html>

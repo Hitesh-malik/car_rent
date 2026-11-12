@@ -112,7 +112,7 @@ export function CarCard({
         <div className={cn("mt-5 flex items-end justify-between gap-3 border-t pt-4", dark ? "border-white/[0.08]" : "border-line")}>
           <div className="min-w-0">
             <p className={cn("text-[11px] uppercase tracking-[0.16em]", dark ? "text-white/55" : "text-muted")}>Rental rate</p>
-            <p className={cn("mt-0.5 truncate font-[family-name:var(--font-display)] text-base font-bold tracking-[-0.02em]", dark ? "text-white" : "text-ink")}>
+            <p className={cn("mt-0.5 truncate font-[family-name:var(--font-display)] text-base font-bold tracking-[-0.02em]", dark ? "text-soft-red" : "text-racing")}>
               {amount}
               {unit && <span className={cn("ml-1 text-xs font-medium", dark ? "text-white/50" : "text-muted")}>/ {unit}</span>}
             </p>

@@ -3,36 +3,36 @@ name: automotive-ui
 description: Visual design standards for the Roy Rentals car showroom (Next.js + Tailwind v4). Use when creating or changing any page, section, card, button, layout or responsive behaviour in this project, so new UI matches the premium Black + Racing-Red automotive design system instead of drifting toward a generic template.
 ---
 
-# Automotive UI standards — refined Black + Red + White
+# Automotive UI standards — Black + Red with warm neutrals
 
-A calm, premium showroom: soft black and charcoal stages, warm-white content sections, and one muted racing red used sparingly. The car photography is the hero. **Refine, never re-theme** — no other accent colours.
+A calm, premium showroom: luxury black and charcoal stages, warm ivory content, warm grey and soft rose supporting surfaces, and one premium red used for meaning. The car photography is the hero. No other accent hues — no blue, cyan, purple, orange or green (WhatsApp actions use the brand's dark red).
 
-## Proportions
+## Proportions (guidance)
 
-~55–60% warm white / white · ~25–30% soft black / charcoal · ≤10% red. Red is for primary CTAs, active/selected states, small lines and dots, and **one** highlighted phrase per page H1 (hero, explore, showroom, 404). Everything else stays neutral.
+~45–50% ivory / white · ~20–25% black / charcoal · ~10% red · the rest warm grey, soft rose and neutral surfaces. Red = primary CTAs, active/selected states, prices, small lines/dots, and **one** highlighted phrase per page H1 (hero, explore, showroom, 404).
 
 ## Tokens (`src/app/globals.css` `@theme` — never hard-code hex values in components)
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `night` / `charcoal` / `charcoal-2` | #151619 / #202126 / #28292D | dark stages, panels on dark, raised surfaces |
-| `racing` / `racing-deep` | #D83A4E / #C93649 | CTA fill / hover; `racing-deep` for **small red text on light** (4.7:1) |
-| `soft-red` | #E8798A | small red text/icons on dark (6.5:1) |
-| `red-tint` | #FBEAEC | subtle red backgrounds (active FAQ toggle) |
-| `canvas` / `mist` / `surface` / `grey` | #FFF / #F6F5F2 / #EFEEEA / #E8E7E4 | light sections, frames |
-| `ink` / `ink-soft` / `muted` / `muted-dark` | #242428 / #46464C / #68686F / #B8B8BD | text |
-| `line` | #E5E4E1 | borders |
+| `night` / `charcoal` / `charcoal-2` | #19191C / #252529 / #2E2E33 | dark stages, panels, raised surfaces |
+| `racing` / `racing-deep` | #BD394A / #A93142 | CTA fill / hover, prices on light; `racing-deep` for red text on warm grey or rose |
+| `soft-red` | #E08A96 | **any** red text or meaningful icon on dark (6.9:1) — `racing` on dark is for large headings only |
+| `rose` (`red-tint`) | #F3E8E8 | icon chips, open FAQ row, chip hover |
+| `mist` / `canvas` / `grey` / `surface` | #F7F5F1 / #FFF / #EAE8E4 / #EFEDE8 | ivory sections, cards, warm-grey feature band, frames |
+| `ink` / `ink-soft` / `muted` / `muted-dark` | #252525 / #444 / #686868 / #D0D0D0 | text |
+| `line` / `field` | #E6E3DE / #8F8A83 | decorative borders / **form-control borders** (3:1) |
 
-Utilities: `stage-dark` (soft charcoal page-top stage), `seam-top` (soft transition after a dark section), `text-red-gradient` (muted — max one per page), `grid-lines`, `grain`, `skeleton` / `skeleton-dark`.
-Shadows: `--shadow-soft`, `--shadow-lift` (neutral), `--shadow-btn` (primary buttons only). **No red glows, red card shadows or pulsing light.** Red light pools behind cars stay ≤ 10% opacity.
+Utilities: `stage-dark`, `seam-top`, `text-red-gradient` (muted, max one per page), `grid-lines`, `grain`, `skeleton` / `skeleton-dark`.
+Shadows: `--shadow-soft`, `--shadow-lift` (neutral), `--shadow-btn` (primary buttons only). No red glows, red card shadows or pulsing light.
 
 ## Contrast rules (WCAG 2.2, verified)
 
-White on `racing` 4.5:1 · `muted` on mist 5.1:1 · white text on dark ≥ `white/55` (6:1) — never `/35–/45` for text.
+White on `racing` 5.5:1 · `racing` on ivory 5.0:1 · `muted` on ivory 5.1:1 (4.55 on warm grey) · `soft-red` on night 6.9:1 · white text on dark ≥ `white/55` · inputs: `border-field` on light, `border-white/35` on dark.
 
 ## Section rhythm
 
-Page tops are `stage-dark`; light sections that follow dark ones get `seam-top`. Alternate `mist` and `white`; never stack more than two dark sections; the footer is the closing dark band.
+Page tops are `stage-dark`; light sections after dark ones get `seam-top`. Home: hero (dark) → fleet (ivory) → showroom teaser (dark) → why-us (warm grey) → promo (ivory) → how it works (white) → FAQ (ivory) → footer (dark). Never stack two full dark sections.
 
 ## Typography
 

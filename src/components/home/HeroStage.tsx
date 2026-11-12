@@ -64,7 +64,7 @@ export function HeroStage({ car, wordmark }: { car: Car; wordmark: string }) {
       <m.div
         aria-hidden
         style={{ x: glowX, y: glowY }}
-        className="pointer-events-none absolute left-[18%] top-[30%] z-0 h-[60%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.18),transparent)] blur-3xl"
+        className="pointer-events-none absolute left-[18%] top-[30%] z-0 h-[60%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgb(189_57_74/0.18),transparent)] blur-3xl"
       />
 
       {/* layer 2 — the car plane (tilts in 3D) */}
@@ -85,7 +85,7 @@ export function HeroStage({ car, wordmark }: { car: Car; wordmark: string }) {
               />
             </m.div>
             {/* cinematic grade: crush the showroom background into the night, keep the car lit */}
-            <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_55%_58%,transparent_35%,rgb(21_22_25/0.82)_100%)]" />
+            <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_55%_58%,transparent_35%,rgb(25_25_28/0.82)_100%)]" />
             <div aria-hidden className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-night/80 to-transparent" />
             <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-night via-night/50 to-transparent" />
             {/* one-off light sweep across the bodywork */}

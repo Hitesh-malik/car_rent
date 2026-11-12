@@ -130,7 +130,7 @@ export function FleetExplorer({ cars, categories }: { cars: Car[]; categories: C
               <select
                 value={filters.sort}
                 onChange={(e) => set({ sort: e.target.value as SortKey })}
-                className="h-11 appearance-none rounded-full border border-line bg-white pl-10 pr-9 text-sm font-semibold text-ink outline-none transition-colors hover:border-ink/25 focus:border-racing"
+                className="h-11 appearance-none rounded-full border border-field bg-white pl-10 pr-9 text-sm font-semibold text-ink outline-none transition-colors hover:border-ink/25 focus:border-racing"
               >
                 {sortOptions.map((o) => (
                   <option key={o.value} value={o.value}>

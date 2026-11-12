@@ -87,7 +87,7 @@ export function FilterPanel({
             value={filters.query}
             onChange={(e) => set({ query: e.target.value })}
             placeholder="Search brand, model, feature…"
-            className="h-12 w-full rounded-xl border border-line bg-white pl-10 pr-10 text-[15px] font-medium text-ink outline-none transition-[border-color,box-shadow] placeholder:text-muted/80 hover:border-ink/20 focus:border-racing focus:shadow-[0_0_0_4px_rgb(216_58_78/0.05)] [&::-webkit-search-cancel-button]:hidden"
+            className="h-12 w-full rounded-xl border border-field bg-white pl-10 pr-10 text-[15px] font-medium text-ink outline-none transition-[border-color,box-shadow] placeholder:text-muted/80 hover:border-ink/60 focus:border-racing focus:shadow-[0_0_0_4px_rgb(189_57_74/0.05)] [&::-webkit-search-cancel-button]:hidden"
           />
           {filters.query && (
             <button

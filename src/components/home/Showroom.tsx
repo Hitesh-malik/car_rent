@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 
 const POINTS = [
   { icon: ScanEye, title: "Every angle", body: "Front, side, rear and cabin views of each car." },
@@ -58,11 +59,12 @@ export function Showroom() {
         </div>
 
         <Reveal className="lg:col-span-7" y={32}>
+          <ImageReveal>
           <Link
             href={`/showroom?car=${feature.slug}`}
-            className="group relative block aspect-[16/10] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#222328_0%,#151619_72%)]"
+            className="group relative block aspect-[16/10] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#27272c_0%,#19191c_72%)]"
           >
-            <div aria-hidden className="absolute left-1/2 top-1/2 h-[60%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.1),transparent)] blur-2xl" />
+            <div aria-hidden className="absolute left-1/2 top-1/2 h-[60%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(189_57_74/0.1),transparent)] blur-2xl" />
             <Image
               src={img.src}
               alt={img.alt}
@@ -79,6 +81,7 @@ export function Showroom() {
               Open in studio
             </span>
           </Link>
+          </ImageReveal>
 
           {/* the collection */}
           <ul className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-7">

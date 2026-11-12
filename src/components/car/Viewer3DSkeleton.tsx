@@ -26,7 +26,7 @@ export function Viewer3DSkeleton({ progress, fill = false }: { progress?: number
       role="status"
       aria-live="polite"
       className={cn(
-        "relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-panel)] bg-[radial-gradient(ellipse_70%_55%_at_50%_70%,#1f1e22_0%,#1b1c20_50%,#151619_100%)]",
+        "relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-panel)] bg-[radial-gradient(ellipse_70%_55%_at_50%_70%,#232226_0%,#1f1f23_50%,#19191c_100%)]",
         fill ? "absolute inset-0" : "aspect-[4/3] border border-white/[0.08] sm:aspect-[16/10]",
       )}
     >

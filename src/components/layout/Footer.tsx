@@ -127,17 +127,17 @@ export function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white">Contact</h3>
             <ul className="mt-5 space-y-4 text-sm text-white/55">
               <li className="flex gap-3">
-                <Mail className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                <Mail className="mt-0.5 size-4 shrink-0 text-soft-red" aria-hidden />
                 <a href={`mailto:${siteConfig.contact.email}`} className="break-all transition-colors hover:text-white">
                   {siteConfig.contact.email}
                 </a>
               </li>
               <li className="flex gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                <MapPin className="mt-0.5 size-4 shrink-0 text-soft-red" aria-hidden />
                 <span>{siteConfig.contact.address}</span>
               </li>
               <li className="flex gap-3">
-                <Clock className="mt-0.5 size-4 shrink-0 text-racing" aria-hidden />
+                <Clock className="mt-0.5 size-4 shrink-0 text-soft-red" aria-hidden />
                 <span>{siteConfig.contact.hours}</span>
               </li>
             </ul>

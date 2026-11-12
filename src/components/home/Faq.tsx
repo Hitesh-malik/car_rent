@@ -20,7 +20,7 @@ export function Faq({ items }: { items: FaqItem[] }) {
         const btn = `${uid}-q${i}`;
         const panel = `${uid}-a${i}`;
         return (
-          <li key={item.q} className={cn("relative transition-colors duration-300", isOpen && "bg-mist/70")}>
+          <li key={item.q} className={cn("relative transition-colors duration-300", isOpen && "bg-rose/45")}>
             <span
               aria-hidden
               className={cn(

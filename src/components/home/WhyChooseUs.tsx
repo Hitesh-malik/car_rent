@@ -33,7 +33,7 @@ export function WhyChooseUs() {
   const interior = getAllCars().find((c) => c.slug === "kia-seltos")?.images.find((i) => i.angle === "interior");
 
   return (
-    <section aria-labelledby="why-heading" className="seam-top relative bg-mist py-20 sm:py-28">
+    <section aria-labelledby="why-heading" className="relative bg-grey py-20 sm:py-28">
       <Container>
         <SectionHeading
           id="why-heading"
@@ -83,7 +83,7 @@ export function WhyChooseUs() {
               className="group relative overflow-hidden rounded-[var(--radius-panel)] border border-line bg-white p-7 transition-[border-color,box-shadow,background-color] duration-300 hover:border-ink/15 hover:shadow-[var(--shadow-lift)]"
             >
               <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-racing to-bright transition-transform duration-500 group-hover:scale-x-100" />
-              <span className="inline-flex size-11 items-center justify-center rounded-xl border border-line bg-white text-ink transition-colors duration-300 group-hover:border-racing group-hover:bg-racing group-hover:text-white">
+              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-rose text-racing-deep transition-colors duration-300 group-hover:bg-racing group-hover:text-white">
                 <Icon className="size-5" strokeWidth={1.7} aria-hidden />
               </span>
               <h3 className="mt-5 text-lg font-bold tracking-[-0.02em] text-ink">{title}</h3>

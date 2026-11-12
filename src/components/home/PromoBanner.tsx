@@ -3,7 +3,7 @@ import { getAllCars } from "@/lib/cars";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { ParallaxImage } from "@/components/ui/ParallaxImage";
 
@@ -12,16 +12,16 @@ export function PromoBanner() {
   const img = thar?.images.find((i) => i.src.endsWith("front-2.jpg")) ?? thar?.images[0];
 
   return (
-    <section aria-labelledby="promo-heading" className="bg-mist pb-20 sm:pb-28">
+    <section aria-labelledby="promo-heading" className="bg-mist py-20 sm:py-28">
       <Container>
-        <Reveal className="relative isolate overflow-hidden rounded-[2rem] bg-night">
+        <ImageReveal className="relative isolate overflow-hidden rounded-[2rem] bg-night">
           {img && (
             <ParallaxImage className="absolute inset-y-0 right-0 -z-20 w-full md:w-[72%] md:[mask-image:linear-gradient(to_right,transparent,black_35%)]">
               <Image src={img.src} alt="" fill sizes="(min-width: 768px) 68vw, 100vw" className="object-cover" style={{ objectPosition: "60% 60%" }} />
             </ParallaxImage>
           )}
           {/* black → red grade */}
-          <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#151619_0%,#151619_32%,rgb(21_22_25/0.7)_55%,rgb(21_22_25/0.25)_80%,rgb(216_58_78/0.08)_100%)]" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#19191c_0%,#19191c_32%,rgb(25_25_28/0.7)_55%,rgb(25_25_28/0.25)_80%,rgb(189_57_74/0.08)_100%)]" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night/80 via-transparent to-transparent md:hidden" />
           <div aria-hidden className="absolute -left-20 -top-20 -z-10 size-72 rounded-full bg-racing/12 blur-[90px]" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-racing via-bright to-transparent" />
@@ -50,7 +50,7 @@ export function PromoBanner() {
               </a>
             </div>
           </div>
-        </Reveal>
+        </ImageReveal>
       </Container>
     </section>
   );

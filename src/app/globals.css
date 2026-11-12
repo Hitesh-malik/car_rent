@@ -2,41 +2,44 @@
 
 /* ───────────────────────── Design tokens — Black + Racing Red ───────────────────────── */
 @theme {
-  /* Refined Black + Red + White. Contrast-checked (WCAG 2.2):
-     white on racing 4.5:1 · racing-deep text on mist 4.7:1 · soft-red on night 6.5:1 · white/55+ on night ≥ 6:1 */
+  /* Black + Red brand with warm supporting neutrals. Contrast-checked (WCAG 2.2):
+     white on racing 5.5:1 · racing on ivory 5.0:1 · racing-deep on warm grey / rose 5.5:1
+     soft-red on night 6.9:1 · muted-dark on night 11.4:1 · field borders ≥ 3:1. Red text on dark = large headings only (3.2:1). */
 
-  /* Dark surfaces — soft black, never pure black */
-  --color-night: #151619; /* primary black — hero, showroom, footer */
-  --color-night-2: #1b1c20; /* gradient partner for night */
-  --color-charcoal: #202126; /* deep charcoal — panels and cards on dark */
-  --color-charcoal-2: #28292d; /* secondary charcoal — raised surfaces, hover */
+  /* Dark surfaces — luxury black and charcoal, never pure black */
+  --color-night: #19191c;
+  --color-night-2: #1f1f23;
+  --color-charcoal: #252529;
+  --color-charcoal-2: #2e2e33;
 
-  /* Reds — one muted racing red, used sparingly */
-  --color-racing: #d83a4e; /* primary CTAs, active indicators, small lines */
-  --color-racing-deep: #c93649; /* hover; small red text on light surfaces */
-  --color-bright: #d83a4e; /* legacy alias → racing (no neon highlight anymore) */
-  --color-soft-red: #e8798a; /* red text / icons on dark surfaces */
-  --color-deep-red: #8e2a37; /* rare gradient ends */
-  --color-red-tint: #fbeaec; /* soft red tint backgrounds */
+  /* Reds — one premium red, used for meaning */
+  --color-racing: #bd394a; /* primary CTAs, active indicators, prices, small lines */
+  --color-racing-deep: #a93142; /* hover; red text on warm grey / rose */
+  --color-bright: #bd394a; /* legacy alias → racing */
+  --color-soft-red: #e08a96; /* red text / icons on dark surfaces */
+  --color-deep-red: #7d2531;
+  --color-red-tint: #f3e8e8; /* soft rose */
+  --color-rose: #f3e8e8;
 
-  /* Light surfaces */
+  /* Warm neutrals */
   --color-canvas: #ffffff;
-  --color-mist: #f6f5f2; /* warm white section background */
-  --color-surface: #efeeea; /* image frames, skeleton base */
-  --color-line: #e5e4e1; /* borders on light */
-  --color-grey: #e8e7e4; /* light grey surfaces */
+  --color-mist: #f7f5f1; /* warm ivory */
+  --color-surface: #efede8;
+  --color-grey: #eae8e4; /* warm grey */
+  --color-line: #e6e3de; /* decorative borders */
+  --color-field: #8f8a83; /* form-control borders (3.4:1) */
 
   /* Type */
-  --color-ink: #242428; /* primary text */
-  --color-ink-soft: #46464c; /* body text on light */
-  --color-muted: #68686f; /* secondary text */
-  --color-muted-dark: #b8b8bd; /* secondary text on dark */
+  --color-ink: #252525;
+  --color-ink-soft: #444444;
+  --color-muted: #686868;
+  --color-muted-dark: #d0d0d0;
 
-  /* Aliases kept for compatibility */
-  --color-accent: #d83a4e;
-  --color-accent-strong: #c93649;
-  --color-accent-soft: #fbeaec;
-  --color-whatsapp: #1fa855;
+  /* Aliases */
+  --color-accent: #bd394a;
+  --color-accent-strong: #a93142;
+  --color-accent-soft: #f3e8e8;
+  --color-whatsapp: #a93142; /* WhatsApp actions use the brand's dark red — no green */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -45,10 +48,10 @@
   --radius-panel: 1.5rem;
 
   /* Neutral shadows only; the button shadow carries a whisper of red */
-  --shadow-soft: 0 1px 2px rgb(21 22 25 / 0.04), 0 8px 24px -14px rgb(21 22 25 / 0.14);
-  --shadow-lift: 0 2px 6px rgb(21 22 25 / 0.05), 0 24px 48px -24px rgb(21 22 25 / 0.24);
-  --shadow-glow: 0 0 0 1px rgb(216 58 78 / 0.2), 0 12px 32px -18px rgb(216 58 78 / 0.3);
-  --shadow-btn: 0 1px 2px rgb(21 22 25 / 0.12), 0 6px 16px -10px rgb(216 58 78 / 0.45);
+  --shadow-soft: 0 1px 2px rgb(25 25 28 / 0.04), 0 8px 24px -14px rgb(25 25 28 / 0.12);
+  --shadow-lift: 0 2px 6px rgb(25 25 28 / 0.05), 0 22px 44px -24px rgb(25 25 28 / 0.22);
+  --shadow-glow: 0 0 0 1px rgb(189 57 74 / 0.18), 0 12px 32px -18px rgb(189 57 74 / 0.25);
+  --shadow-btn: 0 1px 2px rgb(25 25 28 / 0.12), 0 6px 16px -10px rgb(189 57 74 / 0.4);
 
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -101,12 +104,12 @@
 
 /* ───────────────────────── Utilities ───────────────────────── */
 @utility skeleton {
-  background: linear-gradient(90deg, #ecebe7 25%, #f6f5f2 50%, #ecebe7 75%);
+  background: linear-gradient(90deg, #ebe9e4 25%, #f7f5f1 50%, #ebe9e4 75%);
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
 }
 @utility skeleton-dark {
-  background: linear-gradient(90deg, #1d1e22 25%, #26272b 50%, #1d1e22 75%);
+  background: linear-gradient(90deg, #212125 25%, #2a2a2f 50%, #212125 75%);
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
 }
@@ -120,7 +123,7 @@
 
 /* Muted red for the single highlighted phrase in a heading (use at most once per page section) */
 @utility text-red-gradient {
-  background: linear-gradient(100deg, #e05a6c 0%, #d83a4e 55%, #c93649 100%);
+  background: linear-gradient(100deg, #cf4b5c 0%, #bd394a 60%, #a93142 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -128,15 +131,15 @@
 
 /* Soft seam where a light section follows a dark one */
 @utility seam-top {
-  background-image: linear-gradient(to bottom, #ebeae6, rgb(246 245 242 / 0) 10rem);
+  background-image: linear-gradient(to bottom, #eae8e4, rgb(247 245 241 / 0) 10rem);
 }
 
 /* Soft charcoal stage background used by dark hero sections */
 @utility stage-dark {
   background-color: var(--color-night);
   background-image:
-    radial-gradient(ellipse 80% 70% at 70% 30%, #212227 0%, transparent 70%),
-    linear-gradient(to bottom, #17181b, #151619);
+    radial-gradient(ellipse 80% 70% at 70% 30%, #26262b 0%, transparent 70%),
+    linear-gradient(to bottom, #1c1c20, #19191c);
 }
 
 /* Fine film grain for dark stages (very low opacity, static) */
