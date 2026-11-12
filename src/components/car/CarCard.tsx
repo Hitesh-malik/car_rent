@@ -34,8 +34,8 @@ export function CarCard({
       className={cn(
         "flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border transition-[box-shadow,border-color,transform]",
         dark
-          ? "border-white/[0.08] bg-charcoal hover:border-racing/40 hover:shadow-[0_30px_60px_-28px_rgb(0_0_0/0.9),0_0_0_1px_rgb(230_57_70/0.25),0_20px_60px_-30px_rgb(230_57_70/0.6)]"
-          : "border-line bg-white hover:border-racing/30 hover:shadow-[0_30px_60px_-30px_rgb(11_11_13/0.35),0_18px_50px_-30px_rgb(230_57_70/0.45)]",
+          ? "border-white/[0.08] bg-charcoal hover:border-white/20 hover:shadow-[0_24px_48px_-24px_rgb(0_0_0/0.6)]"
+          : "border-line bg-white hover:border-ink/15 hover:shadow-[var(--shadow-lift)]",
         className,
       )}
     >
@@ -60,14 +60,15 @@ export function CarCard({
         {/* red light line that draws in on hover */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-racing via-bright to-soft-red transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/tilt:scale-x-100"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-racing to-racing-deep transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/tilt:scale-x-100"
         />
         <div className="pointer-events-none absolute inset-x-3 top-3 flex items-start justify-between gap-2">
           <span className="rounded-full border border-white/15 bg-night/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md">
             {car.categoryLabel}
           </span>
           {car.featured && (
-            <span className="rounded-full bg-racing px-2.5 py-1 text-[11px] font-semibold text-white shadow-[0_6px_16px_-6px_rgb(230_57_70/0.9)]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-ink backdrop-blur-md">
+              <span aria-hidden className="size-1.5 rounded-full bg-racing" />
               Featured
             </span>
           )}
@@ -110,7 +111,7 @@ export function CarCard({
 
         <div className={cn("mt-5 flex items-end justify-between gap-3 border-t pt-4", dark ? "border-white/[0.08]" : "border-line")}>
           <div className="min-w-0">
-            <p className={cn("text-[11px] uppercase tracking-[0.16em]", dark ? "text-white/45" : "text-muted")}>Rental rate</p>
+            <p className={cn("text-[11px] uppercase tracking-[0.16em]", dark ? "text-white/55" : "text-muted")}>Rental rate</p>
             <p className={cn("mt-0.5 truncate font-[family-name:var(--font-display)] text-base font-bold tracking-[-0.02em]", dark ? "text-white" : "text-ink")}>
               {amount}
               {unit && <span className={cn("ml-1 text-xs font-medium", dark ? "text-white/50" : "text-muted")}>/ {unit}</span>}
@@ -121,7 +122,10 @@ export function CarCard({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Book the ${name} on WhatsApp (opens in a new tab)`}
-            className="relative z-20 inline-flex h-10 shrink-0 items-center rounded-full bg-[linear-gradient(135deg,#ff334f,#e63946_45%,#b81d30)] px-4 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgb(230_57_70/0.8)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgb(255_51_79/0.9)]"
+            className={cn(
+              "relative z-20 inline-flex h-10 shrink-0 items-center rounded-full px-4 text-[13px] font-semibold transition-colors duration-300",
+              dark ? "bg-white text-ink hover:bg-racing hover:text-white" : "bg-night text-white hover:bg-racing",
+            )}
           >
             Book Now
           </a>

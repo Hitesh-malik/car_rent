@@ -20,14 +20,14 @@ export function HowItWorks() {
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30 });
 
   return (
-    <section id="how-it-works" aria-labelledby="how-heading" className="relative overflow-hidden bg-mist py-20 sm:py-28">
+    <section id="how-it-works" aria-labelledby="how-heading" className="relative overflow-hidden bg-white py-20 sm:py-28">
       <Container>
         <SectionHeading
           id="how-heading"
           eyebrow="How it works"
           title={
             <>
-              Four steps to the <span className="text-red-gradient">driver&apos;s seat.</span>
+              Four steps to the <span className="text-muted">driver&apos;s seat.</span>
             </>
           }
           description="No sign-ups, no checkout. Pick a car, share your dates and we take it from there."
@@ -38,7 +38,7 @@ export function HowItWorks() {
           {/* progress rail (desktop: horizontal, mobile: vertical) */}
           <div aria-hidden className="absolute left-[1.75rem] top-0 h-full w-px bg-line lg:left-0 lg:top-[1.75rem] lg:h-px lg:w-full">
             <m.div style={{ scaleY: progress }} className="h-full w-full origin-top bg-gradient-to-b from-racing to-bright lg:hidden" />
-            <m.div style={{ scaleX: progress }} className="hidden h-full w-full origin-left bg-gradient-to-r from-racing to-bright shadow-[0_0_12px_rgb(255_51_79/0.7)] lg:block" />
+            <m.div style={{ scaleX: progress }} className="hidden h-full w-full origin-left bg-gradient-to-r from-racing to-bright  lg:block" />
           </div>
 
           <ol className="relative grid gap-10 lg:grid-cols-4 lg:gap-6">
@@ -51,11 +51,11 @@ export function HowItWorks() {
                 transition={{ duration: 0.7, ease: EASE_OUT, delay: i * 0.12 }}
                 className="relative flex origin-top gap-5 lg:block"
               >
-                <span className="relative z-10 inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-night font-[family-name:var(--font-display)] text-base font-extrabold tabular-nums text-white shadow-[0_12px_30px_-12px_rgb(11_11_13/0.7)] ring-4 ring-mist">
+                <span className="relative z-10 inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-night font-[family-name:var(--font-display)] text-base font-extrabold tabular-nums text-white shadow-[0_12px_30px_-12px_rgb(21_22_25/0.7)] ring-4 ring-white">
                   {s.n}
-                  <span aria-hidden className="absolute -right-1 -top-1 size-3 rounded-full bg-bright shadow-[0_0_10px_rgb(255_51_79/0.9)]" />
+                  <span aria-hidden className="absolute -right-1 -top-1 size-3 rounded-full bg-bright " />
                 </span>
-                <div className="flex-1 rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-[var(--shadow-soft)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-racing/30 hover:shadow-[0_24px_50px_-28px_rgb(230_57_70/0.55)] lg:mt-8">
+                <div className="flex-1 rounded-[var(--radius-card)] border border-line bg-white p-6 shadow-[var(--shadow-soft)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-racing/30 hover:shadow-[var(--shadow-lift)] lg:mt-8">
                   <s.icon className="size-6 text-racing" strokeWidth={1.7} aria-hidden />
                   <h3 className="mt-4 text-xl font-bold tracking-[-0.025em] text-ink">{s.title}</h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-soft/80">{s.body}</p>

@@ -13,7 +13,7 @@ export function SimilarCars({ car }: { car: Car }) {
     <section aria-labelledby="similar-heading" className="relative isolate overflow-hidden bg-night py-20 text-white sm:py-28">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-px w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-racing/60 to-transparent" />
-        <div className="absolute -left-40 bottom-0 h-[30rem] w-[40rem] rounded-full bg-racing/[0.12] blur-[120px]" />
+        <div className="absolute -left-40 bottom-0 h-[30rem] w-[40rem] rounded-full bg-racing/[0.048] blur-[120px]" />
       </div>
       <Container>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -23,7 +23,7 @@ export function SimilarCars({ car }: { car: Car }) {
             eyebrow="Keep exploring"
             title={
               <>
-                You might <span className="text-red-gradient">also like.</span>
+                You might <span className="text-white/55">also like.</span>
               </>
             }
           />

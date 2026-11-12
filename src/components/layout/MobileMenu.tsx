@@ -93,7 +93,7 @@ export function MobileMenu({
             transition={{ duration: 0.42, ease: EASE_OUT }}
           >
             {/* red ambient light */}
-            <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-racing/25 blur-3xl" />
+            <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-racing/10 blur-3xl" />
 
             <div className="relative flex items-center justify-between">
               <Logo tone="light" />
@@ -125,14 +125,14 @@ export function MobileMenu({
                     className="group flex min-h-14 items-center justify-between font-[family-name:var(--font-display)] text-2xl font-bold tracking-[-0.03em] text-white"
                   >
                     {item.label}
-                    <ArrowUpRight className="size-5 text-white/40 transition-colors group-hover:text-bright" aria-hidden />
+                    <ArrowUpRight className="size-5 text-white/55 transition-colors group-hover:text-bright" aria-hidden />
                   </Link>
                 </m.li>
               ))}
             </m.ul>
 
             <div className="relative mt-7">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Categories</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">Categories</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {categories.map((c) => (
                   <Link

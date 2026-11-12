@@ -20,11 +20,11 @@ export function Faq({ items }: { items: FaqItem[] }) {
         const btn = `${uid}-q${i}`;
         const panel = `${uid}-a${i}`;
         return (
-          <li key={item.q} className={cn("relative transition-colors duration-300", isOpen && "bg-mist/60")}>
+          <li key={item.q} className={cn("relative transition-colors duration-300", isOpen && "bg-mist/70")}>
             <span
               aria-hidden
               className={cn(
-                "absolute inset-y-0 left-0 w-[3px] origin-top bg-gradient-to-b from-racing to-bright transition-transform duration-500 ease-[var(--ease-out-expo)]",
+                "absolute inset-y-0 left-0 w-[3px] origin-top bg-racing transition-transform duration-500 ease-[var(--ease-out-expo)]",
                 isOpen ? "scale-y-100" : "scale-y-0",
               )}
             />
@@ -41,7 +41,7 @@ export function Faq({ items }: { items: FaqItem[] }) {
                 <span
                   className={cn(
                     "inline-flex size-9 shrink-0 items-center justify-center rounded-full border transition-[transform,background-color,border-color,color] duration-300 ease-[var(--ease-out-expo)]",
-                    isOpen ? "rotate-45 border-racing bg-racing text-white" : "border-line text-ink group-hover:border-ink/30",
+                    isOpen ? "rotate-45 border-racing/40 bg-red-tint text-racing-deep" : "border-line text-ink group-hover:border-ink/30",
                   )}
                 >
                   <Plus className="size-4" aria-hidden />

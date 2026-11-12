@@ -26,7 +26,7 @@ export function Viewer3DSkeleton({ progress, fill = false }: { progress?: number
       role="status"
       aria-live="polite"
       className={cn(
-        "relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-panel)] bg-[radial-gradient(ellipse_70%_55%_at_50%_70%,#24141a_0%,#141419_50%,#0b0b0d_100%)]",
+        "relative flex flex-col items-center justify-center overflow-hidden rounded-[var(--radius-panel)] bg-[radial-gradient(ellipse_70%_55%_at_50%_70%,#1f1e22_0%,#1b1c20_50%,#151619_100%)]",
         fill ? "absolute inset-0" : "aspect-[4/3] border border-white/[0.08] sm:aspect-[16/10]",
       )}
     >
@@ -36,12 +36,12 @@ export function Viewer3DSkeleton({ progress, fill = false }: { progress?: number
           <span className="race-line absolute inset-y-0 left-0 w-2/5 rounded-full bg-gradient-to-r from-transparent via-bright to-soft-red" />
         ) : (
           <span
-            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-racing to-bright shadow-[0_0_12px_rgb(255_51_79/0.8)] transition-[width] duration-300"
+            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-racing to-bright  transition-[width] duration-300"
             style={{ width: `${pct}%` }}
           />
         )}
       </div>
-      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/45">
+      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/55">
         Preparing 3D view{pct !== null ? ` · ${pct}%` : "…"}
       </p>
     </div>

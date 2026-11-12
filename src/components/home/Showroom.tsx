@@ -21,10 +21,10 @@ export function Showroom() {
   const img = feature.images.find((i) => i.angle === "side") ?? feature.images[0];
 
   return (
-    <section id="showroom" aria-labelledby="showroom-heading" className="relative isolate overflow-hidden bg-[#101014] py-20 text-white sm:py-28">
+    <section id="showroom" aria-labelledby="showroom-heading" className="relative isolate overflow-hidden bg-night py-20 text-white sm:py-28">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-px w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-racing/60 to-transparent" />
-        <div className="absolute -right-40 top-1/3 h-[34rem] w-[34rem] rounded-full bg-racing/[0.12] blur-[120px]" />
+        <div className="absolute -right-40 top-1/3 h-[34rem] w-[34rem] rounded-full bg-racing/[0.048] blur-[120px]" />
         <div className="grain absolute inset-0 opacity-[0.05] mix-blend-overlay" />
       </div>
 
@@ -36,7 +36,7 @@ export function Showroom() {
             eyebrow="Digital showroom"
             title={
               <>
-                Explore every angle, <span className="text-red-gradient">before you drive.</span>
+                Explore every angle, <span className="text-white/55">before you drive.</span>
               </>
             }
             description="Step into our studio and see each car in genuine photography — exterior, interior and every spec, ready to compare."
@@ -60,9 +60,9 @@ export function Showroom() {
         <Reveal className="lg:col-span-7" y={32}>
           <Link
             href={`/showroom?car=${feature.slug}`}
-            className="group relative block aspect-[16/10] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#1d1d24_0%,#101014_72%)]"
+            className="group relative block aspect-[16/10] overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#222328_0%,#151619_72%)]"
           >
-            <div aria-hidden className="absolute left-1/2 top-1/2 h-[60%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(230_57_70/0.26),transparent)] blur-2xl" />
+            <div aria-hidden className="absolute left-1/2 top-1/2 h-[60%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.1),transparent)] blur-2xl" />
             <Image
               src={img.src}
               alt={img.alt}
@@ -72,8 +72,8 @@ export function Showroom() {
               style={{ objectPosition: img.focus ?? "50% 55%" }}
             />
             <div aria-hidden className="absolute inset-x-[22%] bottom-[8%] h-px bg-gradient-to-r from-transparent via-bright/70 to-transparent" />
-            <span className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-[#101014]/70 px-3 py-1.5 text-xs font-semibold backdrop-blur-md">
-              {carDisplayName(feature)} <span className="text-white/45">· Side</span>
+            <span className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-night/70 px-3 py-1.5 text-xs font-semibold backdrop-blur-md">
+              {carDisplayName(feature)} <span className="text-white/55">· Side</span>
             </span>
             <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink transition-colors group-hover:bg-racing group-hover:text-white">
               Open in studio
@@ -87,7 +87,7 @@ export function Showroom() {
                 <Link
                   href={`/showroom?car=${c.slug}`}
                   aria-label={`View the ${carDisplayName(c)} in the showroom`}
-                  className="group relative block aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.08] bg-[#17171C] transition-colors hover:border-racing"
+                  className="group relative block aspect-[4/3] overflow-hidden rounded-xl border border-white/[0.08] bg-charcoal transition-colors hover:border-racing"
                 >
                   <Image
                     src={c.images[0].src}

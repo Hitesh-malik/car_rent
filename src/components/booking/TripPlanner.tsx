@@ -209,7 +209,7 @@ export function TripPlanner(props: Props) {
 
       <button
         type="submit"
-        className="group/rent relative isolate flex h-14 w-full items-center justify-between overflow-hidden rounded-full bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] pl-2 pr-6 text-base font-semibold text-white shadow-[var(--shadow-btn)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-12px_rgb(255_51_79/0.8)] active:scale-[0.99]"
+        className="group/rent relative isolate flex h-14 w-full items-center justify-between overflow-hidden rounded-full bg-racing hover:bg-racing-deep pl-2 pr-6 text-base font-semibold text-white shadow-[var(--shadow-btn)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] active:scale-[0.99]"
       >
         <span className="flex items-center gap-3">
           <span className="inline-flex size-10 items-center justify-center rounded-full bg-white/15 transition-colors duration-300 group-hover/rent:bg-white group-hover/rent:text-whatsapp">

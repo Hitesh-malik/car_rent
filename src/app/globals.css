@@ -2,33 +2,40 @@
 
 /* ───────────────────────── Design tokens — Black + Racing Red ───────────────────────── */
 @theme {
-  /* Dark stages */
-  --color-night: #0b0b0d; /* primary black — hero, showroom, footer */
-  --color-night-2: #141419; /* secondary black — navigation, raised dark surfaces */
-  --color-charcoal: #202027; /* cards and panels on dark */
-  --color-charcoal-2: #2a2a33; /* borders / hover on dark */
+  /* Refined Black + Red + White. Contrast-checked (WCAG 2.2):
+     white on racing 4.5:1 · racing-deep text on mist 4.7:1 · soft-red on night 6.5:1 · white/55+ on night ≥ 6:1 */
 
-  /* Reds */
-  --color-racing: #e63946; /* primary accent */
-  --color-bright: #ff334f; /* interactive highlights */
-  --color-soft-red: #ff6678; /* secondary accents on dark */
-  --color-deep-red: #8f1424; /* gradient ends */
+  /* Dark surfaces — soft black, never pure black */
+  --color-night: #151619; /* primary black — hero, showroom, footer */
+  --color-night-2: #1b1c20; /* gradient partner for night */
+  --color-charcoal: #202126; /* deep charcoal — panels and cards on dark */
+  --color-charcoal-2: #28292d; /* secondary charcoal — raised surfaces, hover */
+
+  /* Reds — one muted racing red, used sparingly */
+  --color-racing: #d83a4e; /* primary CTAs, active indicators, small lines */
+  --color-racing-deep: #c93649; /* hover; small red text on light surfaces */
+  --color-bright: #d83a4e; /* legacy alias → racing (no neon highlight anymore) */
+  --color-soft-red: #e8798a; /* red text / icons on dark surfaces */
+  --color-deep-red: #8e2a37; /* rare gradient ends */
+  --color-red-tint: #fbeaec; /* soft red tint backgrounds */
 
   /* Light surfaces */
   --color-canvas: #ffffff;
-  --color-mist: #f7f7f8; /* warm white section background */
-  --color-surface: #efeff1; /* image frames, skeleton base */
-  --color-line: #e5e5e7; /* borders on light */
+  --color-mist: #f6f5f2; /* warm white section background */
+  --color-surface: #efeeea; /* image frames, skeleton base */
+  --color-line: #e5e4e1; /* borders on light */
+  --color-grey: #e8e7e4; /* light grey surfaces */
 
   /* Type */
-  --color-ink: #0b0b0d;
-  --color-ink-soft: #3c3c44;
-  --color-muted: #777780;
+  --color-ink: #242428; /* primary text */
+  --color-ink-soft: #46464c; /* body text on light */
+  --color-muted: #68686f; /* secondary text */
+  --color-muted-dark: #b8b8bd; /* secondary text on dark */
 
   /* Aliases kept for compatibility */
-  --color-accent: #e63946;
-  --color-accent-strong: #c81d35;
-  --color-accent-soft: #fdecee;
+  --color-accent: #d83a4e;
+  --color-accent-strong: #c93649;
+  --color-accent-soft: #fbeaec;
   --color-whatsapp: #1fa855;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -37,10 +44,11 @@
   --radius-card: 1.125rem;
   --radius-panel: 1.5rem;
 
-  --shadow-soft: 0 1px 2px rgb(11 11 13 / 0.05), 0 10px 28px -14px rgb(11 11 13 / 0.18);
-  --shadow-lift: 0 2px 6px rgb(11 11 13 / 0.06), 0 30px 60px -24px rgb(11 11 13 / 0.35);
-  --shadow-glow: 0 0 0 1px rgb(230 57 70 / 0.35), 0 18px 50px -18px rgb(230 57 70 / 0.55);
-  --shadow-btn: 0 10px 30px -10px rgb(230 57 70 / 0.65), inset 0 1px 0 rgb(255 255 255 / 0.18);
+  /* Neutral shadows only; the button shadow carries a whisper of red */
+  --shadow-soft: 0 1px 2px rgb(21 22 25 / 0.04), 0 8px 24px -14px rgb(21 22 25 / 0.14);
+  --shadow-lift: 0 2px 6px rgb(21 22 25 / 0.05), 0 24px 48px -24px rgb(21 22 25 / 0.24);
+  --shadow-glow: 0 0 0 1px rgb(216 58 78 / 0.2), 0 12px 32px -18px rgb(216 58 78 / 0.3);
+  --shadow-btn: 0 1px 2px rgb(21 22 25 / 0.12), 0 6px 16px -10px rgb(216 58 78 / 0.45);
 
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -81,7 +89,7 @@
     color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-bright);
+    outline: 2px solid var(--color-racing);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -93,12 +101,12 @@
 
 /* ───────────────────────── Utilities ───────────────────────── */
 @utility skeleton {
-  background: linear-gradient(90deg, #ececef 25%, #f6f6f7 50%, #ececef 75%);
+  background: linear-gradient(90deg, #ecebe7 25%, #f6f5f2 50%, #ecebe7 75%);
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
 }
 @utility skeleton-dark {
-  background: linear-gradient(90deg, #1a1a20 25%, #24242c 50%, #1a1a20 75%);
+  background: linear-gradient(90deg, #1d1e22 25%, #26272b 50%, #1d1e22 75%);
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
 }
@@ -110,12 +118,25 @@
   }
 }
 
-/* Red gradient text for selected heading words */
+/* Muted red for the single highlighted phrase in a heading (use at most once per page section) */
 @utility text-red-gradient {
-  background: linear-gradient(100deg, #ff6678 0%, #ff334f 40%, #e63946 70%, #b81d30 100%);
+  background: linear-gradient(100deg, #e05a6c 0%, #d83a4e 55%, #c93649 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Soft seam where a light section follows a dark one */
+@utility seam-top {
+  background-image: linear-gradient(to bottom, #ebeae6, rgb(246 245 242 / 0) 10rem);
+}
+
+/* Soft charcoal stage background used by dark hero sections */
+@utility stage-dark {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(ellipse 80% 70% at 70% 30%, #212227 0%, transparent 70%),
+    linear-gradient(to bottom, #17181b, #151619);
 }
 
 /* Fine film grain for dark stages (very low opacity, static) */
@@ -126,8 +147,8 @@
 /* Subtle engineering grid used on dark stages */
 @utility grid-lines {
   background-image:
-    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
@@ -208,7 +229,7 @@
 
 /* Slow ambient pulse for red light pools (opacity only) */
 @utility glow-pulse {
-  animation: glow-pulse 6s ease-in-out infinite;
+  opacity: 0.85; /* static — pulsing light was distracting */
 }
 @keyframes glow-pulse {
   0%,

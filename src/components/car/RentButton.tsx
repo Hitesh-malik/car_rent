@@ -30,7 +30,7 @@ export function RentButton({
       className={cn(
         "group/rent relative isolate inline-flex items-center justify-between overflow-hidden rounded-full pl-2 pr-5 font-semibold text-white transition-[background-color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-expo)] active:scale-[0.99]",
         variant === "primary"
-          ? "bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] shadow-[var(--shadow-btn)] hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-12px_rgb(255_51_79/0.8)]"
+          ? "bg-racing hover:bg-racing-deep shadow-[var(--shadow-btn)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]"
           : "border border-white/12 bg-white/[0.03] hover:border-whatsapp hover:bg-whatsapp",
         compact ? "h-12 w-auto gap-5 text-sm" : "h-14 w-full gap-3 text-[15px]",
         className,

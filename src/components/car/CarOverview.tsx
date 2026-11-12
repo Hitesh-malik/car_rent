@@ -11,12 +11,12 @@ export function CarOverview({ car }: { car: Car }) {
   const extra = car.images.slice(1);
 
   return (
-    <section aria-labelledby="overview-heading" className="bg-white py-20 sm:py-28">
+    <section aria-labelledby="overview-heading" className="seam-top bg-mist py-20 sm:py-28">
       <Container className="grid gap-14 lg:grid-cols-12 lg:gap-12">
         <Reveal className="lg:col-span-5">
           <Eyebrow>Vehicle overview</Eyebrow>
           <h2 id="overview-heading" className="mt-5 text-balance text-3xl font-bold leading-[1.05] tracking-[-0.04em] text-ink sm:text-[2.75rem]">
-            About the <span className="text-red-gradient">{name}</span>
+            About the <span className="text-muted">{name}</span>
           </h2>
           <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-ink-soft/85 sm:text-base">
             {car.longDescription.map((p) => (

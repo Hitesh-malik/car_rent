@@ -20,12 +20,12 @@ export default function CreditsPage() {
 
   return (
     <PageTransition>
-      <section className="relative isolate overflow-hidden bg-night pb-16 pt-10 text-white sm:pb-20 sm:pt-14">
-        <div aria-hidden className="absolute -right-20 -top-40 -z-10 h-[26rem] w-[40rem] rounded-full bg-racing/20 blur-[110px]" />
+      <section className="stage-dark relative isolate overflow-hidden pb-16 pt-10 text-white sm:pb-20 sm:pt-14">
+        <div aria-hidden className="absolute -right-20 -top-40 -z-10 h-[26rem] w-[40rem] rounded-full bg-racing/8 blur-[110px]" />
         <Container className="[&>*]:max-w-4xl">
           <Eyebrow tone="dark">Attribution</Eyebrow>
-          <h1 className="mt-5 font-[family-name:var(--font-display)] text-4xl font-extrabold uppercase tracking-[-0.045em] sm:text-6xl">
-            Image <span className="text-red-gradient">credits</span>
+          <h1 className="mt-5 font-[family-name:var(--font-display)] text-4xl font-bold tracking-[-0.045em] sm:text-6xl">
+            Image <span className="text-white/55">credits</span>
           </h1>
           <p className="mt-5 max-w-2xl text-white/60">
             Vehicle photographs are sourced from Wikimedia Commons under the licences listed below and are used as placeholders

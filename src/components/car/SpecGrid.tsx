@@ -19,7 +19,7 @@ export function SpecGrid({ car }: { car: Car }) {
           className="group rounded-2xl border border-white/[0.07] bg-white/[0.03] p-3.5 transition-colors duration-300 hover:border-racing/40 hover:bg-white/[0.05]"
         >
           <Icon className="size-[18px] text-soft-red" strokeWidth={1.7} aria-hidden />
-          <dt className="mt-3 text-[11px] uppercase tracking-[0.14em] text-white/45">{label}</dt>
+          <dt className="mt-3 text-[11px] uppercase tracking-[0.14em] text-white/55">{label}</dt>
           <dd className="mt-0.5 text-sm font-semibold leading-snug text-white">{value}</dd>
         </div>
       ))}

@@ -12,12 +12,12 @@ export function Hero() {
   const categoryCount = getCategories().length;
 
   return (
-    <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-night text-white">
+    <section aria-labelledby="hero-heading" className="stage-dark relative isolate overflow-hidden text-white">
       {/* ── lighting ── */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,black,transparent)]" />
-        <div className="glow-pulse absolute right-[-10%] top-[18%] h-[38rem] w-[52rem] rounded-full bg-[radial-gradient(closest-side,rgb(230_57_70/0.38),transparent)] blur-2xl" />
-        <div className="absolute -left-40 bottom-0 h-[26rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgb(143_20_36/0.35),transparent)] blur-2xl" />
+        <div className="absolute right-[-10%] top-[18%] h-[38rem] w-[52rem] rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.15),transparent)] blur-2xl" />
+        <div className="absolute -left-40 bottom-0 h-[26rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgb(142_42_55/0.16),transparent)] blur-2xl" />
         <div className="grain absolute inset-0 opacity-[0.06] mix-blend-overlay" />
       </div>
 
@@ -77,7 +77,7 @@ export function Hero() {
               { k: "Enquiry reply", v: "WhatsApp" },
             ].map((s) => (
               <div key={s.k} className="bg-night/90 px-4 py-3.5 backdrop-blur">
-                <dt className="text-[11px] uppercase tracking-[0.14em] text-white/45">{s.k}</dt>
+                <dt className="text-[11px] uppercase tracking-[0.14em] text-white/55">{s.k}</dt>
                 <dd className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold tracking-[-0.03em] text-white">{s.v}</dd>
               </div>
             ))}

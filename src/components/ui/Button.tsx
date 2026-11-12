@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 /**
- * primary   – racing-red gradient with a soft red glow (main CTA, any background)
+ * primary   – muted racing red (main CTA, any background)
  * dark      – black (on light backgrounds)
  * outline   – hairline on light backgrounds
  * outlineDark – hairline on dark backgrounds
@@ -17,20 +17,13 @@ type Size = "sm" | "md" | "lg";
 const base =
   "group/btn relative isolate inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full font-semibold tracking-[-0.01em] transition-[background-color,color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-expo)] active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50";
 
-/* A light sheen sweeps across red buttons on hover (pure CSS, transform-only). */
-const sheen =
-  "before:pointer-events-none before:absolute before:inset-y-0 before:-left-1/2 before:-z-10 before:w-1/2 before:-skew-x-12 before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent before:transition-transform before:duration-700 before:ease-[var(--ease-out-expo)] hover:before:translate-x-[300%]";
-
 const variants: Record<Variant, string> = {
-  primary: cn(
-    "bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] text-white shadow-[var(--shadow-btn)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgb(255_51_79/0.75),inset_0_1px_0_rgb(255_255_255/0.2)]",
-    sheen,
-  ),
-  dark: "bg-night text-white hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-[0_14px_30px_-16px_rgb(11_11_13/0.6)]",
-  outline: "border border-ink/15 bg-white text-ink hover:border-ink/40 hover:bg-mist",
-  outlineDark: "border border-white/15 bg-white/[0.03] text-white backdrop-blur-sm hover:border-white/35 hover:bg-white/[0.08]",
+  primary: "bg-racing text-white shadow-[var(--shadow-btn)] hover:bg-racing-deep",
+  dark: "bg-night text-white hover:bg-charcoal-2",
+  outline: "border border-line bg-white text-ink hover:border-ink/30 hover:bg-mist",
+  outlineDark: "border border-white/20 bg-transparent text-white hover:border-white/40 hover:bg-white/[0.06]",
   ghost: "text-ink hover:bg-surface",
-  light: cn("bg-white text-ink hover:-translate-y-0.5 hover:bg-white hover:text-racing hover:shadow-[0_14px_34px_-14px_rgb(0_0_0/0.5)]", sheen),
+  light: "bg-white text-ink hover:bg-mist",
   whatsapp: "bg-night text-white hover:bg-whatsapp",
 };
 

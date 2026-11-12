@@ -84,11 +84,11 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
       <JsonLd data={jsonLd} />
 
       {/* ───────── dark showroom ───────── */}
-      <section aria-labelledby="car-heading" className="relative isolate overflow-clip bg-night text-white">
+      <section aria-labelledby="car-heading" className="stage-dark relative isolate overflow-clip text-white">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_30%_30%,black,transparent)]" />
-          <div className="glow-pulse absolute -left-32 top-24 h-[34rem] w-[48rem] rounded-full bg-[radial-gradient(closest-side,rgb(230_57_70/0.28),transparent)] blur-2xl" />
-          <div className="absolute -right-40 bottom-0 h-[26rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgb(143_20_36/0.35),transparent)] blur-2xl" />
+          <div className="absolute -left-32 top-24 h-[34rem] w-[48rem] rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.11),transparent)] blur-2xl" />
+          <div className="absolute -right-40 bottom-0 h-[26rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgb(142_42_55/0.16),transparent)] blur-2xl" />
           <div className="grain absolute inset-0 opacity-[0.06] mix-blend-overlay" />
         </div>
 
@@ -103,7 +103,7 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
               <ArrowLeft className="size-4 transition-transform duration-200 group-hover:-translate-x-0.5" aria-hidden />
               Back to fleet
             </Link>
-            <nav aria-label="Breadcrumb" className="hidden text-sm text-white/45 sm:block">
+            <nav aria-label="Breadcrumb" className="hidden text-sm text-white/55 sm:block">
               <ol className="flex items-center gap-1.5">
                 <li>
                   <Link href="/" transitionTypes={["nav-back"]} className="transition-colors hover:text-white">
@@ -139,13 +139,13 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
               <Eyebrow tone="dark">{car.categoryLabel}</Eyebrow>
               <h1 id="car-heading" className="mt-5 font-[family-name:var(--font-display)] leading-[0.95]">
                 <span className="block text-lg font-semibold tracking-[-0.01em] text-white/55 sm:text-xl">{car.brand}</span>
-                <span className="mt-1 block text-[2.75rem] font-extrabold uppercase tracking-[-0.05em] sm:text-6xl xl:text-[4.25rem]">{car.model}</span>
+                <span className="mt-1 block text-[2.75rem] font-bold tracking-[-0.045em] sm:text-6xl xl:text-[4rem]">{car.model}</span>
               </h1>
               <p className="mt-5 max-w-md text-pretty text-base leading-relaxed text-white/60 sm:text-lg">{car.shortDescription}</p>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-baseline gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2">
-                  <span className="text-xs uppercase tracking-[0.14em] text-white/45">Rate</span>
+                  <span className="text-xs uppercase tracking-[0.14em] text-white/55">Rate</span>
                   <span className="font-[family-name:var(--font-display)] text-base font-bold text-white">{formatPrice(car.pricePerDay)}</span>
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/70">
@@ -162,13 +162,13 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
               {/* booking panel */}
               <div id="plan" className="relative mt-8 overflow-hidden rounded-[var(--radius-panel)] border border-white/[0.08] bg-charcoal/80 p-5 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.9)] backdrop-blur sm:p-6">
                 <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-racing to-transparent" />
-                <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-racing/20 blur-3xl" />
+                <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-racing/8 blur-3xl" />
                 <div className="relative">
                   <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-[-0.02em]">Plan your trip</h2>
                   <p className="mt-1 text-sm text-white/50">Add your dates and send them to us on WhatsApp — our team will confirm the car and final price.</p>
                   <TripPlanner variant="panel" car={car} className="mt-5" />
 
-                  <div className="my-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/35">
+                  <div className="my-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">
                     <span className="h-px flex-1 bg-white/10" />
                     or
                     <span className="h-px flex-1 bg-white/10" />

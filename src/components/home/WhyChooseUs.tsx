@@ -33,7 +33,7 @@ export function WhyChooseUs() {
   const interior = getAllCars().find((c) => c.slug === "kia-seltos")?.images.find((i) => i.angle === "interior");
 
   return (
-    <section aria-labelledby="why-heading" className="relative bg-white py-20 sm:py-28">
+    <section aria-labelledby="why-heading" className="seam-top relative bg-mist py-20 sm:py-28">
       <Container>
         <SectionHeading
           id="why-heading"
@@ -41,7 +41,7 @@ export function WhyChooseUs() {
           align="center"
           title={
             <>
-              Rental, <span className="text-red-gradient">without the friction.</span>
+              Rental, <span className="text-muted">without the friction.</span>
             </>
           }
           description="A carefully looked-after fleet and a direct line to the people who look after it."
@@ -63,9 +63,9 @@ export function WhyChooseUs() {
               />
             )}
             <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night via-night/70 to-night/20" />
-            <div aria-hidden className="absolute -bottom-24 -left-24 -z-10 size-80 rounded-full bg-racing/40 blur-[90px]" />
+            <div aria-hidden className="absolute -bottom-24 -left-24 -z-10 size-80 rounded-full bg-racing/16 blur-[90px]" />
             <div className="flex h-full flex-col justify-end">
-              <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-racing text-white shadow-[0_10px_30px_-8px_rgb(230_57_70/0.8)]">
+              <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-racing text-white ">
                 <Gem className="size-5" aria-hidden />
               </span>
               <h3 className="mt-6 text-2xl font-bold tracking-[-0.03em] sm:text-3xl">Premium vehicle collection</h3>
@@ -80,7 +80,7 @@ export function WhyChooseUs() {
             <RevealItem
               as="li"
               key={title}
-              className="group relative overflow-hidden rounded-[var(--radius-panel)] border border-line bg-mist p-7 transition-[border-color,box-shadow,background-color] duration-300 hover:border-racing/30 hover:bg-white hover:shadow-[0_24px_50px_-30px_rgb(230_57_70/0.5)]"
+              className="group relative overflow-hidden rounded-[var(--radius-panel)] border border-line bg-white p-7 transition-[border-color,box-shadow,background-color] duration-300 hover:border-ink/15 hover:shadow-[var(--shadow-lift)]"
             >
               <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-racing to-bright transition-transform duration-500 group-hover:scale-x-100" />
               <span className="inline-flex size-11 items-center justify-center rounded-xl border border-line bg-white text-ink transition-colors duration-300 group-hover:border-racing group-hover:bg-racing group-hover:text-white">

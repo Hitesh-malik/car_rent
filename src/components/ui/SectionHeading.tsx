@@ -13,7 +13,7 @@ export function Eyebrow({ children, className, tone = "light" }: { children: Rea
       )}
     >
       <span aria-hidden className="relative h-px w-7 bg-gradient-to-r from-racing to-bright">
-        <span className="absolute -right-0.5 -top-[2px] size-[5px] rounded-full bg-bright shadow-[0_0_8px_2px_rgb(255_51_79/0.6)]" />
+        <span className="absolute -right-0.5 -top-[2px] size-[5px] rounded-full bg-bright " />
       </span>
       {children}
     </p>
@@ -47,7 +47,7 @@ export function SectionHeading({
       <h2
         id={id}
         className={cn(
-          "text-balance text-[2rem] font-bold leading-[1.04] tracking-[-0.04em] sm:text-[2.6rem] lg:text-[3.4rem]",
+          "text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-[2.5rem] lg:text-[3.1rem]",
           tone === "dark" ? "text-white" : "text-ink",
         )}
       >
@@ -58,7 +58,7 @@ export function SectionHeading({
           className={cn(
             "mt-5 text-pretty text-base leading-relaxed sm:text-lg",
             align === "center" && "mx-auto max-w-xl",
-            tone === "dark" ? "text-white/60" : "text-ink-soft/80",
+            tone === "dark" ? "text-muted-dark" : "text-muted",
           )}
         >
           {description}

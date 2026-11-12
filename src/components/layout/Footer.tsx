@@ -21,8 +21,8 @@ export function Footer() {
       </h2>
 
       {/* lighting + grain */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-racing/70 to-transparent" />
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-80 w-[70rem] -translate-x-1/2 rounded-full bg-racing/[0.12] blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-racing/35 to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-80 w-[70rem] -translate-x-1/2 rounded-full bg-racing/[0.048] blur-[100px]" />
       <div aria-hidden className="grain pointer-events-none absolute inset-0 -z-10 opacity-[0.05]" />
 
       {/* contact strip */}
@@ -30,8 +30,8 @@ export function Footer() {
         <div className="flex flex-col gap-8 border-b border-white/[0.08] pb-12 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-soft-red">Get in touch</p>
-            <p className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-5xl">
-              Your next drive is <span className="text-red-gradient">one message</span> away.
+            <p className="mt-4 font-[family-name:var(--font-display)] text-3xl font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl">
+              Your next drive is one message away.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -153,7 +153,7 @@ export function Footer() {
       </div>
 
       <div className="relative border-t border-white/[0.08] bg-night">
-        <Container className="flex flex-col gap-3 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <Container className="flex flex-col gap-3 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <CurrentYear /> {siteConfig.name}. All rights reserved.
           </p>

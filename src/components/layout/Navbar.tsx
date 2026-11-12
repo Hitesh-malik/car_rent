@@ -117,7 +117,7 @@ function CategoriesMenu() {
                       >
                         <span className="min-w-0">
                           <span className="block text-sm font-semibold text-white">{meta.label}</span>
-                          <span className="block truncate text-xs text-white/45">{meta.blurb}</span>
+                          <span className="block truncate text-xs text-white/55">{meta.blurb}</span>
                         </span>
                         <span className="shrink-0 rounded-full border border-white/10 px-2 py-0.5 text-[11px] tabular-nums text-white/60 transition-colors group-hover:border-racing/60 group-hover:text-white">
                           {count}
@@ -185,7 +185,7 @@ export function Navbar() {
                         className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] ring-1 ring-inset ring-white/10"
                         transition={{ type: "spring", stiffness: 420, damping: 36 }}
                       >
-                        <span className="absolute bottom-[3px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-bright shadow-[0_0_8px_rgb(255_51_79/0.8)]" />
+                        <span className="absolute bottom-[3px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-bright " />
                       </m.span>
                     )}
                     {item.label}

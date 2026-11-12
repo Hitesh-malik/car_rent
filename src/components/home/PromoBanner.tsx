@@ -12,7 +12,7 @@ export function PromoBanner() {
   const img = thar?.images.find((i) => i.src.endsWith("front-2.jpg")) ?? thar?.images[0];
 
   return (
-    <section aria-labelledby="promo-heading" className="bg-white pb-20 sm:pb-28">
+    <section aria-labelledby="promo-heading" className="bg-mist pb-20 sm:pb-28">
       <Container>
         <Reveal className="relative isolate overflow-hidden rounded-[2rem] bg-night">
           {img && (
@@ -21,9 +21,9 @@ export function PromoBanner() {
             </ParallaxImage>
           )}
           {/* black → red grade */}
-          <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#0b0b0d_0%,#0b0b0d_32%,rgb(11_11_13/0.75)_52%,rgb(143_20_36/0.55)_78%,rgb(230_57_70/0.55)_100%)]" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#151619_0%,#151619_32%,rgb(21_22_25/0.7)_55%,rgb(21_22_25/0.25)_80%,rgb(216_58_78/0.08)_100%)]" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-night/80 via-transparent to-transparent md:hidden" />
-          <div aria-hidden className="absolute -left-20 -top-20 -z-10 size-72 rounded-full bg-racing/30 blur-[90px]" />
+          <div aria-hidden className="absolute -left-20 -top-20 -z-10 size-72 rounded-full bg-racing/12 blur-[90px]" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-racing via-bright to-transparent" />
 
           <div className="max-w-xl px-6 py-16 sm:px-12 sm:py-20 lg:py-24">

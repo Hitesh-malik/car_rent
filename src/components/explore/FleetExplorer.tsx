@@ -97,7 +97,7 @@ export function FleetExplorer({ cars, categories }: { cars: Car[]; categories: C
               Filters
             </p>
             {active > 0 && (
-              <button type="button" onClick={clearAll} className="text-xs font-semibold text-racing hover:text-accent-strong">
+              <button type="button" onClick={clearAll} className="text-xs font-semibold text-racing-deep hover:text-ink">
                 Clear all
               </button>
             )}
@@ -167,7 +167,7 @@ export function FleetExplorer({ cars, categories }: { cars: Car[]; categories: C
                 </li>
               ))}
               <li>
-                <button type="button" onClick={clearAll} className="h-8 px-2 text-xs font-semibold text-racing hover:text-accent-strong">
+                <button type="button" onClick={clearAll} className="h-8 px-2 text-xs font-semibold text-racing-deep hover:text-ink">
                   Clear filters
                 </button>
               </li>
@@ -259,7 +259,7 @@ export function FleetExplorer({ cars, categories }: { cars: Car[]; categories: C
                 <button
                   type="button"
                   onClick={() => setDrawer(false)}
-                  className="h-12 rounded-full bg-[linear-gradient(135deg,#ff334f,#e63946_45%,#b81d30)] text-sm font-semibold text-white shadow-[var(--shadow-btn)]"
+                  className="h-12 rounded-full bg-racing hover:bg-racing-deep text-sm font-semibold text-white shadow-[var(--shadow-btn)]"
                 >
                   Show {visible.length} {visible.length === 1 ? "car" : "cars"}
                 </button>

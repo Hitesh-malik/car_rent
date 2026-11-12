@@ -76,9 +76,9 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
       </Suspense>
 
       {/* ═════════ STUDIO (dark) ═════════ */}
-      <section aria-labelledby="showroom-heading" className="relative isolate overflow-clip bg-[#101014] text-white">
+      <section aria-labelledby="showroom-heading" className="stage-dark relative isolate overflow-clip text-white">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-[30%] h-[36rem] w-[70rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(230_57_70/0.16),transparent)] blur-2xl" />
+          <div className="absolute left-1/2 top-[30%] h-[36rem] w-[70rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.06),transparent)] blur-2xl" />
           <div className="grain absolute inset-0 opacity-[0.05] mix-blend-overlay" />
         </div>
 
@@ -87,7 +87,7 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <Eyebrow tone="dark">Roy Rentals / Digital showroom</Eyebrow>
-              <h1 id="showroom-heading" className="mt-5 font-[family-name:var(--font-display)] text-[2.6rem] font-extrabold leading-[0.95] tracking-[-0.05em] sm:text-6xl">
+              <h1 id="showroom-heading" className="mt-5 font-[family-name:var(--font-display)] text-[2.6rem] font-bold leading-[1] tracking-[-0.045em] sm:text-6xl">
                 Meet your <span className="text-red-gradient">next drive.</span>
               </h1>
               <p className="mt-4 max-w-xl text-pretty text-white/60 sm:text-lg">
@@ -98,16 +98,16 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
             {/* compact vehicle indicator */}
             <div className="flex items-center gap-3 self-start rounded-2xl border border-white/[0.08] bg-white/[0.03] p-2 pl-4 lg:self-auto">
               <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
                   Now viewing · {String(carIdx + 1).padStart(2, "0")} / {String(cars.length).padStart(2, "0")}
                 </p>
                 <p className="truncate font-[family-name:var(--font-display)] text-sm font-bold">{name}</p>
               </div>
               <div className="flex gap-1">
-                <button type="button" onClick={() => stepCar(-1)} aria-label="Previous vehicle" className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white transition-colors hover:border-[#E63946] hover:bg-[#E63946]">
+                <button type="button" onClick={() => stepCar(-1)} aria-label="Previous vehicle" className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white transition-colors hover:border-racing hover:bg-racing">
                   <ChevronLeft className="size-4" aria-hidden />
                 </button>
-                <button type="button" onClick={() => stepCar(1)} aria-label="Next vehicle" className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white transition-colors hover:border-[#E63946] hover:bg-[#E63946]">
+                <button type="button" onClick={() => stepCar(1)} aria-label="Next vehicle" className="inline-flex size-9 items-center justify-center rounded-full border border-white/10 text-white transition-colors hover:border-racing hover:bg-racing">
                   <ChevronRight className="size-4" aria-hidden />
                 </button>
               </div>
@@ -123,19 +123,19 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
             </AnimatePresence>
 
             {/* information panel */}
-            <aside aria-label={`${name} details`} className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#17171C] p-6">
-              <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E63946] to-transparent" />
+            <aside aria-label={`${name} details`} className="relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-charcoal p-6">
+              <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-racing to-transparent" />
               <AnimatePresence mode="wait" initial={false}>
                 <m.div key={car.slug} {...fade}>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F04452]">{car.categoryLabel}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-soft-red">{car.categoryLabel}</p>
                   <h2 className="mt-3 font-[family-name:var(--font-display)] leading-none">
                     <span className="block text-base font-semibold text-white/55">{car.brand}</span>
-                    <span className="mt-1 block text-4xl font-extrabold uppercase tracking-[-0.045em]">{car.model}</span>
+                    <span className="mt-1 block text-4xl font-bold tracking-[-0.04em]">{car.model}</span>
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-white/60">{car.shortDescription}</p>
 
                   <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.03] px-4 py-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">Daily rate</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">Daily rate</p>
                     <p className="mt-0.5 font-[family-name:var(--font-display)] text-lg font-bold">{formatPrice(car.pricePerDay)}</p>
                     <p className="mt-1.5 flex items-center gap-1.5 text-xs text-white/55">
                       <span className="size-1.5 rounded-full bg-whatsapp" aria-hidden />
@@ -146,9 +146,9 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                   <dl className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
                     {specs.map(({ icon: Icon, label, value }) => (
                       <div key={label} className="flex min-w-0 gap-2.5">
-                        <Icon className="mt-0.5 size-4 shrink-0 text-[#F04452]" strokeWidth={1.8} aria-hidden />
+                        <Icon className="mt-0.5 size-4 shrink-0 text-soft-red" strokeWidth={1.8} aria-hidden />
                         <div className="min-w-0">
-                          <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">{label}</dt>
+                          <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/55">{label}</dt>
                           <dd className="mt-0.5 text-[13px] font-semibold leading-snug text-white">{value}</dd>
                         </div>
                       </div>
@@ -173,7 +173,7 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
           <div className="mt-12">
             <div className="flex items-end justify-between gap-4">
               <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-[-0.02em]">The collection</h2>
-              <p className="text-sm text-white/45">{cars.length} vehicles</p>
+              <p className="text-sm text-white/55">{cars.length} vehicles</p>
             </div>
             <ul className="no-scrollbar -mx-4 mt-5 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 xl:grid xl:grid-cols-7 xl:overflow-visible">
               {cars.map((c) => {
@@ -188,10 +188,10 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                       aria-label={`Show the ${carDisplayName(c)} in the showroom`}
                       className={cn(
                         "group relative block w-full overflow-hidden rounded-2xl border text-left transition-[border-color,background-color,transform] duration-300",
-                        active ? "border-[#E63946] bg-white/[0.06]" : "border-white/[0.08] bg-white/[0.02] hover:-translate-y-0.5 hover:border-white/20",
+                        active ? "border-racing bg-white/[0.06]" : "border-white/[0.08] bg-white/[0.02] hover:-translate-y-0.5 hover:border-white/20",
                       )}
                     >
-                      <span className="relative block aspect-[16/10] overflow-hidden bg-[#17171C]">
+                      <span className="relative block aspect-[16/10] overflow-hidden bg-charcoal">
                         {img && (
                           <ImageWithFallback
                             src={img.src}
@@ -203,16 +203,16 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                           />
                         )}
                         {active && (
-                          <span className="absolute left-2 top-2 rounded-full bg-[#E63946] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">Viewing</span>
+                          <span className="absolute left-2 top-2 rounded-full bg-racing px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">Viewing</span>
                         )}
                       </span>
                       <span className="block p-3">
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">{c.brand}</span>
+                        <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/55">{c.brand}</span>
                         <span className="mt-0.5 block truncate text-sm font-bold text-white">{c.model}</span>
                         <span className="mt-1 block truncate text-[11px] text-white/50">{c.categoryLabel}</span>
                         <span className="mt-1.5 block truncate text-[11px] font-semibold text-white/75">{formatPrice(c.pricePerDay)}</span>
                       </span>
-                      {active && <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-[#E63946] to-[#F04452]" />}
+                      {active && <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-racing to-racing-deep" />}
                     </button>
                   </li>
                 );
@@ -223,13 +223,13 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
       </section>
 
       {/* ═════════ HIGHLIGHTS — real photography of the selected car ═════════ */}
-      <section aria-labelledby="highlights-heading" className="bg-white py-20 sm:py-24">
+      <section aria-labelledby="highlights-heading" className="seam-top bg-mist py-20 sm:py-24">
         <Container>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <Eyebrow>Vehicle highlights</Eyebrow>
               <h2 id="highlights-heading" className="mt-4 text-balance text-3xl font-bold tracking-[-0.04em] text-ink sm:text-[2.6rem]">
-                The {name}, <span className="text-red-gradient">in detail.</span>
+                The {name}, <span className="text-muted">in detail.</span>
               </h2>
             </div>
             <p className="max-w-sm text-sm text-ink-soft/80">Genuine photographs of this vehicle type. Select any image to open it in the studio.</p>
@@ -268,11 +268,11 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                       />
                       <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-transparent" />
                       <span className="absolute inset-x-0 bottom-0 p-5">
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F04452]">{v.label}</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-soft-red">{v.label}</span>
                         <span className={cn("mt-1 block font-[family-name:var(--font-display)] font-bold tracking-[-0.02em] text-white", big ? "text-2xl" : "text-lg")}>{h.title}</span>
                         <span className="mt-1 line-clamp-2 block text-[13px] leading-snug text-white/70">{h.body}</span>
                       </span>
-                      <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#E63946] to-[#F04452] transition-transform duration-500 group-hover:scale-x-100" />
+                      <span aria-hidden className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-racing to-racing-deep transition-transform duration-500 group-hover:scale-x-100" />
                     </button>
                   </li>
                 );
@@ -283,7 +283,7 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
       </section>
 
       {/* ═════════ SPECIFICATIONS ═════════ */}
-      <section aria-labelledby="specs-heading" className="bg-mist py-20 sm:py-24">
+      <section aria-labelledby="specs-heading" className="bg-white py-20 sm:py-24">
         <Container>
           <AnimatePresence mode="wait" initial={false}>
             <m.div key={car.slug} {...fade} className="grid gap-12 lg:grid-cols-12 lg:gap-10">
@@ -335,9 +335,9 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
       </section>
 
       {/* ═════════ BOOKING CTA ═════════ */}
-      <section aria-labelledby="book-heading" className="bg-white py-20 sm:py-24">
+      <section aria-labelledby="book-heading" className="bg-mist py-20 sm:py-24">
         <Container>
-          <div className="relative isolate overflow-hidden rounded-[2rem] bg-[#101014] px-6 py-14 text-white sm:px-12 sm:py-20">
+          <div className="relative isolate overflow-hidden rounded-[2rem] bg-night px-6 py-14 text-white sm:px-12 sm:py-20">
             {car.images[0] && (
               <ImageWithFallback
                 src={car.images[0].src}
@@ -348,10 +348,10 @@ export function ShowroomExperience({ cars, defaultSlug }: { cars: Car[]; default
                 style={{ objectPosition: car.images[0].focus ?? "50% 55%" }}
               />
             )}
-            <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#101014_0%,#101014_35%,rgb(16_16_20/0.6)_60%,rgb(230_57_70/0.35)_100%)]" />
-            <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-[#E63946] via-[#F04452] to-transparent" />
+            <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,#151619_0%,#151619_35%,rgb(21_22_25/0.6)_60%,rgb(21_22_25/0.2)_85%,rgb(216_58_78/0.08)_100%)]" />
+            <div aria-hidden className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-racing via-racing-deep to-transparent" />
             <div className="max-w-lg">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#F04452]">{name}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-soft-red">{name}</p>
               <h2 id="book-heading" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-extrabold leading-[0.98] tracking-[-0.045em] sm:text-6xl">
                 Ready to make it yours?
               </h2>

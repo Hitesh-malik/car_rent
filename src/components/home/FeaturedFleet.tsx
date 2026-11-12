@@ -13,7 +13,7 @@ export function FeaturedFleet() {
   const categories = getCategories(all);
 
   return (
-    <section id="fleet" aria-labelledby="fleet-heading" className="bg-mist pb-20 pt-16 sm:pb-28 sm:pt-24">
+    <section id="fleet" aria-labelledby="fleet-heading" className="seam-top bg-mist pb-20 pt-16 sm:pb-28 sm:pt-24">
       <Container>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -21,7 +21,7 @@ export function FeaturedFleet() {
             eyebrow="The fleet"
             title={
               <>
-                Find your <span className="text-red-gradient">perfect drive.</span>
+                Find your <span className="text-muted">perfect drive.</span>
               </>
             }
             description="A carefully selected collection — from agile city hatchbacks to executive luxury."
@@ -38,7 +38,7 @@ export function FeaturedFleet() {
               <li key={c} className="shrink-0">
                 <Link
                   href={`/cars?category=${encodeURIComponent(c)}`}
-                  className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink-soft transition-[border-color,color,box-shadow] duration-200 hover:border-racing/50 hover:text-ink hover:shadow-[0_6px_18px_-10px_rgb(230_57_70/0.6)]"
+                  className="inline-flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink-soft transition-[border-color,color,box-shadow] duration-200 hover:border-racing/50 hover:text-ink hover:shadow-[var(--shadow-lift)]"
                 >
                   <span aria-hidden className="size-1.5 rounded-full bg-racing" />
                   {CATEGORY_META[c].label}

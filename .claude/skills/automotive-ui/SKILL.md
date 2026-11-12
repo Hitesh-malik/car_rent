@@ -3,35 +3,44 @@ name: automotive-ui
 description: Visual design standards for the Roy Rentals car showroom (Next.js + Tailwind v4). Use when creating or changing any page, section, card, button, layout or responsive behaviour in this project, so new UI matches the premium Black + Racing-Red automotive design system instead of drifting toward a generic template.
 ---
 
-# Automotive UI standards — Black + Racing Red
+# Automotive UI standards — refined Black + Red + White
 
-A night showroom: black stages lit with racing-red light, alternating with bright white "gallery" sections. Red is light and accent, never a flat background. The car photography is the hero.
+A calm, premium showroom: soft black and charcoal stages, warm-white content sections, and one muted racing red used sparingly. The car photography is the hero. **Refine, never re-theme** — no other accent colours.
 
-## Tokens (`src/app/globals.css` `@theme` — never hard-code hex values in components except inside gradients)
+## Proportions
 
-| Token | Use |
-| --- | --- |
-| `night` #0B0B0D | hero, showroom, car detail top, similar cars, footer |
-| `night-2` #141419 / `charcoal` #202027 | raised dark surfaces, dark cards (`CarCard tone="dark"`), panels |
-| `racing` #E63946 | primary accent, icons, active states |
-| `bright` #FF334F / `soft-red` #FF6678 | interactive highlights, glows, icons on dark |
-| `canvas` #FFF / `mist` #F7F7F8 | light sections (alternate them) |
-| `line` #E5E5E7, `muted` #777780, `ink-soft` | borders, meta, body text on light |
+~55–60% warm white / white · ~25–30% soft black / charcoal · ≤10% red. Red is for primary CTAs, active/selected states, small lines and dots, and **one** highlighted phrase per page H1 (hero, explore, showroom, 404). Everything else stays neutral.
 
-Utilities: `text-red-gradient` (one phrase per heading, max), `grid-lines`, `grain`, `glow-pulse`, `skeleton` / `skeleton-dark`, `race-line`.
-Primary CTA gradient: `linear-gradient(135deg,#ff334f,#e63946 42%,#b81d30)` + `--shadow-btn` (use `buttonClasses({ variant: "primary" })`).
+## Tokens (`src/app/globals.css` `@theme` — never hard-code hex values in components)
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `night` / `charcoal` / `charcoal-2` | #151619 / #202126 / #28292D | dark stages, panels on dark, raised surfaces |
+| `racing` / `racing-deep` | #D83A4E / #C93649 | CTA fill / hover; `racing-deep` for **small red text on light** (4.7:1) |
+| `soft-red` | #E8798A | small red text/icons on dark (6.5:1) |
+| `red-tint` | #FBEAEC | subtle red backgrounds (active FAQ toggle) |
+| `canvas` / `mist` / `surface` / `grey` | #FFF / #F6F5F2 / #EFEEEA / #E8E7E4 | light sections, frames |
+| `ink` / `ink-soft` / `muted` / `muted-dark` | #242428 / #46464C / #68686F / #B8B8BD | text |
+| `line` | #E5E4E1 | borders |
+
+Utilities: `stage-dark` (soft charcoal page-top stage), `seam-top` (soft transition after a dark section), `text-red-gradient` (muted — max one per page), `grid-lines`, `grain`, `skeleton` / `skeleton-dark`.
+Shadows: `--shadow-soft`, `--shadow-lift` (neutral), `--shadow-btn` (primary buttons only). **No red glows, red card shadows or pulsing light.** Red light pools behind cars stay ≤ 10% opacity.
+
+## Contrast rules (WCAG 2.2, verified)
+
+White on `racing` 4.5:1 · `muted` on mist 5.1:1 · white text on dark ≥ `white/55` (6:1) — never `/35–/45` for text.
 
 ## Section rhythm
 
-Every page starts dark so it meets the sticky dark header, then light content, dark accent sections, dark footer. Never stack more than two dark sections and never make a whole page dark. Red lighting = blurred radial gradients (`bg-racing/20 blur-[100px]`) and 1px red hairlines, not red fills.
+Page tops are `stage-dark`; light sections that follow dark ones get `seam-top`. Alternate `mist` and `white`; never stack more than two dark sections; the footer is the closing dark band.
 
 ## Typography
 
-Manrope (`--font-display`, applied to h1–h4) + Inter (body). Hero/page H1: extrabold, uppercase, tracking ≈ -0.05em, leading ≈ 0.9. H2 via `SectionHeading` (bold, -0.04em). `Eyebrow` for all small-caps labels (red rule + dot). One `<h1>` per page.
+Manrope (`--font-display`, applied to h1–h4) + Inter (body). Only the home hero H1 is uppercase/extrabold; other H1s are bold, sentence case. H2 via `SectionHeading` (semibold, -0.035em); a second phrase may use a neutral tone (`text-muted` / `text-white/55`) instead of red. `Eyebrow` for all small-caps labels (red rule + dot). One `<h1>` per page.
 
 ## Components to reuse
 
-`ButtonLink` / `buttonClasses` (primary, dark, outline, outlineDark, ghost, light, whatsapp), `SectionHeading` / `Eyebrow` (`tone="dark"` on dark), `Container`, `Reveal*`, `ImageWithFallback` (`tone`), `CarCard` (`tone`), `TiltCard`, `Field` / `inputClasses`, `TripPlanner` (`variant="search" | "panel"`), `RentButton`, `CATEGORY_META`, `buildWhatsAppUrl` / `buildTripWhatsAppUrl`.
+`ButtonLink` / `buttonClasses` (primary = flat muted red; dark, outline, outlineDark, ghost, light, whatsapp — no sheen/glow effects), `SectionHeading` / `Eyebrow` (`tone="dark"` on dark), `Container`, `Reveal*`, `ImageWithFallback` (`tone`), `CarCard` (`tone`; its Book Now is dark/white and turns red only on hover), `TiltCard`, `Field` / `inputClasses`, `TripPlanner` (`variant="search" | "panel"`), `RentButton`, `CATEGORY_META`, `buildWhatsAppUrl` / `buildTripWhatsAppUrl`.
 
 ## Layout
 

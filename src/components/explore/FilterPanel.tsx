@@ -87,7 +87,7 @@ export function FilterPanel({
             value={filters.query}
             onChange={(e) => set({ query: e.target.value })}
             placeholder="Search brand, model, feature…"
-            className="h-12 w-full rounded-xl border border-line bg-white pl-10 pr-10 text-[15px] font-medium text-ink outline-none transition-[border-color,box-shadow] placeholder:text-muted/80 hover:border-ink/20 focus:border-racing focus:shadow-[0_0_0_4px_rgb(230_57_70/0.12)] [&::-webkit-search-cancel-button]:hidden"
+            className="h-12 w-full rounded-xl border border-line bg-white pl-10 pr-10 text-[15px] font-medium text-ink outline-none transition-[border-color,box-shadow] placeholder:text-muted/80 hover:border-ink/20 focus:border-racing focus:shadow-[0_0_0_4px_rgb(216_58_78/0.05)] [&::-webkit-search-cancel-button]:hidden"
           />
           {filters.query && (
             <button
@@ -119,7 +119,7 @@ export function FilterPanel({
                 )}
               >
                 <span className="flex items-center gap-2.5">
-                  <span aria-hidden className={cn("size-1.5 rounded-full transition-colors", active ? "bg-bright shadow-[0_0_8px_rgb(255_51_79)]" : "bg-line group-hover:bg-racing")} />
+                  <span aria-hidden className={cn("size-1.5 rounded-full transition-colors", active ? "bg-bright " : "bg-line group-hover:bg-racing")} />
                   {c === "All" ? "All cars" : CATEGORY_META[c].label}
                 </span>
                 <span className={cn("text-xs tabular-nums", active ? "text-white/60" : "text-muted")}>{n}</span>
@@ -193,7 +193,7 @@ export function FilterPanel({
               const v = Number(e.target.value);
               set({ maxPrice: v >= priceMax ? null : v });
             }}
-            className="w-full accent-[#e63946]"
+            className="w-full accent-racing"
           />
           <p className="mt-2 text-sm font-semibold text-ink">{filters.maxPrice === null ? "Any price" : `Up to ${inr(filters.maxPrice)}`}</p>
         </Group>

@@ -28,7 +28,7 @@ const useCoarsePointer = () => useSyncExternalStore(subscribeCoarse, () => windo
 const useCanFullscreen = () => useSyncExternalStore(noop, () => Boolean(document.fullscreenEnabled), () => false);
 
 const iconBtn =
-  "pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-white/10 bg-[#101014]/70 text-white backdrop-blur-md transition-[background-color,border-color,opacity] duration-200 hover:border-white/25 hover:bg-white/10 disabled:pointer-events-none disabled:opacity-35";
+  "pointer-events-auto inline-flex size-10 items-center justify-center rounded-full border border-white/10 bg-night/70 text-white backdrop-blur-md transition-[background-color,border-color,opacity] duration-200 hover:border-white/25 hover:bg-white/10 disabled:pointer-events-none disabled:opacity-35";
 
 /**
  * Studio viewer built on the car's real photographs: perspectives, drag/swipe to turn between angles,
@@ -254,7 +254,7 @@ export function StudioViewer({
     <div
       ref={frameRef}
       className={cn(
-        "relative overflow-hidden border-white/[0.08] bg-[#101014]",
+        "relative overflow-hidden border-white/[0.08] bg-night",
         isFs ? "flex h-full w-full flex-col" : "-mx-4 border-y sm:mx-0 sm:rounded-[1.75rem] sm:border",
       )}
     >
@@ -262,9 +262,9 @@ export function StudioViewer({
       <div className={cn("relative isolate", isFs ? "min-h-0 flex-1" : "aspect-[4/3.3] sm:aspect-[16/9.6]")}>
         {/* studio: deep black, charcoal floor, soft red ambient behind the car */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#1d1d24_0%,#101014_72%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-b from-transparent to-[#17171C]" />
-          <div className="absolute left-1/2 top-1/2 h-[62%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(230_57_70/0.26),transparent)] blur-2xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_42%,#222328_0%,#151619_72%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-b from-transparent to-charcoal" />
+          <div className="absolute left-1/2 top-1/2 h-[62%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(216_58_78/0.1),transparent)] blur-2xl" />
           <div className="absolute inset-x-[8%] top-[74%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
@@ -307,7 +307,7 @@ export function StudioViewer({
                         className={cn(
                           "absolute left-1/2 top-1/2 h-full max-w-full -translate-x-1/2 -translate-y-1/2 [-webkit-mask-composite:source-in] [mask-composite:intersect]",
                           v.mode === "exterior"
-                            ? "[mask-image:linear-gradient(to_right,transparent,black_16%,black_84%,transparent),linear-gradient(to_bottom,transparent,black_12%,black_86%,transparent)]"
+                            ? "[mask-image:linear-gradient(to_right,transparent,black_24%,black_76%,transparent),linear-gradient(to_bottom,transparent,black_14%,black_82%,transparent)]"
                             : "[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent),linear-gradient(to_bottom,transparent,black_8%,black_92%,transparent)]",
                         )}
                         style={{ aspectRatio: `${v.image.width} / ${v.image.height}` }}
@@ -340,7 +340,7 @@ export function StudioViewer({
         {/* ───────── overlay controls ───────── */}
         <div className="pointer-events-none absolute inset-x-3 top-3 flex items-start justify-between gap-2 sm:inset-x-4 sm:top-4">
           {modeOptions.length > 1 ? (
-            <div role="radiogroup" aria-label="View" className="pointer-events-auto inline-flex rounded-full border border-white/10 bg-[#101014]/70 p-1 backdrop-blur-md">
+            <div role="radiogroup" aria-label="View" className="pointer-events-auto inline-flex rounded-full border border-white/10 bg-night/70 p-1 backdrop-blur-md">
               {modeOptions.map((o) => {
                 const active = o.value === activeMode;
                 return (
@@ -353,7 +353,7 @@ export function StudioViewer({
                     className={cn("relative inline-flex h-8 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-colors sm:px-4", active ? "text-white" : "text-white/55 hover:text-white")}
                   >
                     {active && (
-                      <m.span layoutId="studio-mode" className="absolute inset-0 rounded-full bg-[#E63946]" transition={{ type: "spring", stiffness: 420, damping: 34 }} />
+                      <m.span layoutId="studio-mode" className="absolute inset-0 rounded-full bg-racing" transition={{ type: "spring", stiffness: 420, damping: 34 }} />
                     )}
                     {o.value === "3d" && <Box className="relative size-3.5" aria-hidden />}
                     <span className="relative">{o.label}</span>
@@ -398,13 +398,13 @@ export function StudioViewer({
 
         {!show3D && (
           <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-end justify-between gap-3 sm:inset-x-4 sm:bottom-4">
-            <span className="rounded-full border border-white/10 bg-[#101014]/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md" aria-live="polite">
+            <span className="rounded-full border border-white/10 bg-night/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md" aria-live="polite">
               {current?.label}
-              <span className="ml-2 tabular-nums text-white/45">
+              <span className="ml-2 tabular-nums text-white/55">
                 {String(modePos + 1).padStart(2, "0")} / {String(modeViews.length).padStart(2, "0")}
               </span>
             </span>
-            <span className="hidden rounded-full bg-[#101014]/60 px-3 py-1.5 text-[11px] font-medium text-white/55 backdrop-blur-md md:inline">
+            <span className="hidden rounded-full bg-night/60 px-3 py-1.5 text-[11px] font-medium text-white/55 backdrop-blur-md md:inline">
               {coarse ? "Swipe to turn · Pinch to zoom" : zoomed ? "Drag to pan · Double-click to reset" : "Drag to turn · Double-click or Ctrl + scroll to zoom"}
             </span>
           </div>
@@ -413,7 +413,7 @@ export function StudioViewer({
 
       {/* ───────── perspective bar ───────── */}
       {!show3D && (
-        <div className="border-t border-white/[0.06] bg-[#17171C]">
+        <div className="border-t border-white/[0.06] bg-charcoal">
           <ul className="no-scrollbar flex gap-1 overflow-x-auto px-2 py-2 sm:px-3" aria-label={`${mode === "exterior" ? "Exterior" : "Interior"} perspectives`}>
             {modeViews.map(({ v, i }) => {
               const active = i === index;
@@ -428,7 +428,7 @@ export function StudioViewer({
                       active ? "bg-white/[0.07]" : "hover:bg-white/[0.04]",
                     )}
                   >
-                    <span className={cn("relative h-10 w-16 overflow-hidden rounded-lg ring-1 transition-[box-shadow]", active ? "ring-2 ring-[#E63946]" : "ring-white/10")}>
+                    <span className={cn("relative h-10 w-16 overflow-hidden rounded-lg ring-1 transition-[box-shadow]", active ? "ring-2 ring-racing" : "ring-white/10")}>
                       <ImageWithFallback src={v.image.src} alt="" fill sizes="64px" className="object-cover" style={{ objectPosition: v.image.focus ?? "50% 55%" }} />
                     </span>
                     <span className={cn("text-[13px] font-semibold", active ? "text-white" : "text-white/55 group-hover:text-white/85")}>{v.label}</span>

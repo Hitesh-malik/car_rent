@@ -36,7 +36,7 @@ export const FAQ_ITEMS: FaqItem[] = [
 
 export function FaqSection() {
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="bg-white py-20 sm:py-28">
+    <section id="faq" aria-labelledby="faq-heading" className="bg-mist py-20 sm:py-28">
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <SectionHeading
@@ -44,7 +44,7 @@ export function FaqSection() {
             eyebrow="FAQ"
             title={
               <>
-                Questions, <span className="text-red-gradient">answered.</span>
+                Questions, <span className="text-muted">answered.</span>
               </>
             }
             description="Everything you need to know about renting with us."
