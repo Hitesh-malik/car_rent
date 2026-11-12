@@ -150,7 +150,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const closeMenu = useCallback(() => setOpen(false), []);
   const section = useActiveSection(pathname === "/");
-  const bookHref = pathname.startsWith("/cars/") ? "#plan" : "/#plan";
+  // On a car page, jump to its booking panel; elsewhere, pick a car first.
+  const bookHref = pathname.startsWith("/cars/") ? "#plan" : "/cars";
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 12));
 

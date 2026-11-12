@@ -7,10 +7,9 @@ description: How the Roy Rentals interactive 3D car viewer works (React Three Fi
 
 ## Architecture
 
-- `CarShowcase` (client) owns the Photos | 3D View toggle on car pages.
+- Car pages show the photo gallery only (no 3D toggle); the viewer lives in the home showroom.
 - The home `#showroom` section (`ShowroomStage`) shows a CSS-3D turntable poster and mounts the viewer only after "Launch 3D showroom" is clicked; it uses the first car with `model3d`.
 - `CarViewer3D` is loaded with `next/dynamic(..., { ssr: false })` **from a client component**, so `three`, `@react-three/fiber` and `@react-three/drei` are only downloaded after the visitor picks 3D View. Never import them statically from a server component or the home page — always via `next/dynamic` behind a user action.
-- Cars without `model3d` in `src/data/cars.ts` render `Viewer3DUnavailable` — never an empty canvas.
 - Load failures are caught by an error boundary inside the viewer, which offers "Back to photos".
 
 ## Rendering setup (keep it)

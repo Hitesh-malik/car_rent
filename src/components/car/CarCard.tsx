@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { ArrowRight, Fuel, Settings2, Users } from "lucide-react";
+import { Fuel, Settings2, Users } from "lucide-react";
 import type { Car } from "@/types/car";
 import { formatPrice } from "@/lib/cars";
 import { buildWhatsAppUrl, carDisplayName } from "@/lib/whatsapp";
@@ -116,26 +116,15 @@ export function CarCard({
               {unit && <span className={cn("ml-1 text-xs font-medium", dark ? "text-white/50" : "text-muted")}>/ {unit}</span>}
             </p>
           </div>
-          <div className="relative z-20 flex shrink-0 items-center gap-2">
-            <a
-              href={buildWhatsAppUrl(car)}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Book the ${name} on WhatsApp (opens in a new tab)`}
-              className="inline-flex h-10 items-center rounded-full bg-[linear-gradient(135deg,#ff334f,#e63946_45%,#b81d30)] px-4 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgb(230_57_70/0.8)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgb(255_51_79/0.9)]"
-            >
-              Book Now
-            </a>
-            <span
-              aria-hidden
-              className={cn(
-                "inline-flex size-10 items-center justify-center rounded-full border transition-[background-color,border-color,color] duration-300",
-                dark ? "border-white/15 text-white group-hover/tilt:border-white group-hover/tilt:bg-white group-hover/tilt:text-ink" : "border-line text-ink group-hover/tilt:border-ink group-hover/tilt:bg-ink group-hover/tilt:text-white",
-              )}
-            >
-              <ArrowRight className="size-4 -rotate-45 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover/tilt:rotate-0" />
-            </span>
-          </div>
+          <a
+            href={buildWhatsAppUrl(car)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Book the ${name} on WhatsApp (opens in a new tab)`}
+            className="relative z-20 inline-flex h-10 shrink-0 items-center rounded-full bg-[linear-gradient(135deg,#ff334f,#e63946_45%,#b81d30)] px-4 text-[13px] font-semibold text-white shadow-[0_8px_20px_-8px_rgb(230_57_70/0.8)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgb(255_51_79/0.9)]"
+          >
+            Book Now
+          </a>
         </div>
       </div>
     </TiltCard>

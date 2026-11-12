@@ -10,7 +10,7 @@ import { Faq, type FaqItem } from "./Faq";
 export const FAQ_ITEMS: FaqItem[] = [
   {
     q: "How do I book a car?",
-    a: "Choose a car, add your pickup and return details in the trip planner and tap Check Availability. WhatsApp opens with your trip details pre-filled — send it, and our team confirms availability, price and terms with you directly.",
+    a: "Choose a car, add your pickup and return details in the trip planner on the car's page and tap Book on WhatsApp. WhatsApp opens with your trip details pre-filled — send it, and our team confirms availability, price and terms with you directly.",
   },
   {
     q: "Are the prices on the website final?",

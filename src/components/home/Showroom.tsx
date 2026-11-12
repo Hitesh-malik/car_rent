@@ -10,7 +10,7 @@ import { ShowroomStage } from "./ShowroomStage";
 const POINTS = [
   { icon: Move3d, title: "Walk around it", body: "Drag to orbit a full 360°, pinch or scroll to get closer." },
   { icon: ScanEye, title: "Study the details", body: "Studio lighting picks out every line and surface." },
-  { icon: Gauge, title: "Then take the real one", body: "Switch to photos and specs for the actual car you'll drive." },
+  { icon: Gauge, title: "Then take the real one", body: "See photos and specs of the actual car you'll drive." },
 ];
 
 export function Showroom() {

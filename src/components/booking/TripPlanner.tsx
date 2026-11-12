@@ -2,7 +2,7 @@
 
 import { useId, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, m } from "motion/react";
-import { ArrowRight, CalendarDays, CarFront, CheckCircle2, Clock, MapPin } from "lucide-react";
+import { ArrowRight, CalendarDays, CheckCircle2, Clock, MapPin } from "lucide-react";
 import type { Car } from "@/types/car";
 import { buildTripWhatsAppUrl, type TripDetails } from "@/lib/whatsapp";
 import { rentalDays, toDateInput, validateTrip, type TripErrors } from "@/lib/trip";
@@ -25,18 +25,15 @@ const EMPTY: TripDetails = {
   vehicleType: "Any",
 };
 
-type Props =
-  | { variant: "search"; vehicleTypes: string[]; car?: undefined; className?: string }
-  | { variant: "panel"; car: Car; vehicleTypes?: undefined; className?: string };
+type Props = { variant: "panel"; car: Car; className?: string };
 
 /**
  * Trip planner: collects locations, dates and times, validates them, then opens WhatsApp with a
  * pre-filled availability request. There is no booking backend — confirmation happens with the team on WhatsApp.
  */
 export function TripPlanner(props: Props) {
-  const { variant, className } = props;
-  const car = props.car;
-  const tone = variant === "panel" ? "dark" : "light";
+  const { className, car } = props;
+  const tone = "dark" as "dark" | "light";
   const uid = useId();
   const today = useToday();
   const [trip, setTrip] = useState<TripDetails>(EMPTY);
@@ -186,65 +183,8 @@ export function TripPlanner(props: Props) {
     </AnimatePresence>
   );
 
-  /* ───────── Home search widget (light card) ───────── */
-  if (variant === "search") {
-    return (
-      <form
-        noValidate
-        onSubmit={onSubmit}
-        aria-label="Plan your trip"
-        className={cn(
-          "relative rounded-[1.5rem] border border-white/60 bg-white p-4 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.55),0_0_0_1px_rgb(11_11_13/0.04)] sm:p-6",
-          className,
-        )}
-      >
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-          <div>
-            <p className="font-[family-name:var(--font-display)] text-lg font-bold tracking-[-0.02em] text-ink">Plan your trip</p>
-            <p className="text-[13px] text-muted">Tell us when and where — we&apos;ll confirm availability on WhatsApp.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <label htmlFor={fid("vehicleType")} className="flex items-center gap-2 text-sm text-ink-soft">
-              <CarFront className={iconCls} aria-hidden />
-              <span className="sr-only sm:not-sr-only">Vehicle</span>
-              <select
-                id={fid("vehicleType")}
-                value={trip.vehicleType}
-                onChange={(e) => update("vehicleType", e.target.value)}
-                className="h-10 rounded-full border border-line bg-mist pl-3.5 pr-8 text-sm font-semibold text-ink outline-none transition-colors hover:border-ink/20 focus:border-racing"
-              >
-                <option value="Any">Any type</option>
-                {props.vehicleTypes.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {sameReturnToggle}
-          </div>
-        </div>
-
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1.3fr)_auto] lg:items-start">
-          <div className="grid gap-3 sm:grid-cols-2 md:col-span-2 lg:col-span-1 lg:grid-cols-1">{locationFields}</div>
-          {dateFields}
-          <div className="md:col-span-2 lg:col-span-1 lg:pt-[1.4rem]">
-            <button
-              type="submit"
-              className="group/btn relative isolate inline-flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] px-6 text-[15px] font-semibold text-white shadow-[var(--shadow-btn)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgb(255_51_79/0.75)] active:scale-[0.98] lg:w-auto"
-            >
-              Check Availability
-              <ArrowRight className="size-4 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden />
-            </button>
-          </div>
-        </div>
-        <div className="mt-3 min-h-0 empty:hidden">{sentNote}</div>
-      </form>
-    );
-  }
-
   /* ───────── Car detail panel (dark) ───────── */
-  const panelCar = props.car;
+  const panelCar = car;
   return (
     <form noValidate onSubmit={onSubmit} aria-label={`Plan your trip in the ${panelCar.brand} ${panelCar.model}`} className={cn("space-y-3", className)}>
       {locationFields}
@@ -275,7 +215,7 @@ export function TripPlanner(props: Props) {
           <span className="inline-flex size-10 items-center justify-center rounded-full bg-white/15 transition-colors duration-300 group-hover/rent:bg-white group-hover/rent:text-whatsapp">
             <WhatsAppIcon className="size-[18px]" />
           </span>
-          Check availability
+          Book on WhatsApp
         </span>
         <ArrowRight className="size-5 transition-transform duration-300 group-hover/rent:translate-x-1" aria-hidden />
       </button>

@@ -9,7 +9,7 @@ import { carDisplayName } from "@/lib/whatsapp";
 import { Container } from "@/components/ui/Container";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CarShowcase } from "@/components/car/CarShowcase";
+import { CarGallery } from "@/components/car/CarGallery";
 import { SpecGrid } from "@/components/car/SpecGrid";
 import { RentButton } from "@/components/car/RentButton";
 import { TripPlanner } from "@/components/booking/TripPlanner";
@@ -129,13 +129,13 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
           </div>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-12 xl:gap-14">
-            {/* showcase (≈60%) */}
+            {/* gallery (≈60%) */}
             <div className="lg:sticky lg:top-24 lg:self-start">
-              <CarShowcase car={car} />
+              <CarGallery images={car.images} slug={car.slug} name={name} />
             </div>
 
             {/* info + booking (≈40%) */}
-            <div className="lg:pt-14">
+            <div className="lg:pt-2">
               <Eyebrow tone="dark">{car.categoryLabel}</Eyebrow>
               <h1 id="car-heading" className="mt-5 font-[family-name:var(--font-display)] leading-[0.95]">
                 <span className="block text-lg font-semibold tracking-[-0.01em] text-white/55 sm:text-xl">{car.brand}</span>
@@ -165,7 +165,7 @@ async function CarDetail({ params }: { params: PageProps<"/cars/[slug]">["params
                 <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-racing/20 blur-3xl" />
                 <div className="relative">
                   <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-[-0.02em]">Plan your trip</h2>
-                  <p className="mt-1 text-sm text-white/50">Add your dates — we&apos;ll confirm availability and the final price.</p>
+                  <p className="mt-1 text-sm text-white/50">Add your dates and send them to us on WhatsApp — our team will confirm the car and final price.</p>
                   <TripPlanner variant="panel" car={car} className="mt-5" />
 
                   <div className="my-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/35">

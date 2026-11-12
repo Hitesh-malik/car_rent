@@ -21,7 +21,7 @@ export function Hero() {
         <div className="grain absolute inset-0 opacity-[0.06] mix-blend-overlay" />
       </div>
 
-      <Container className="relative grid min-h-[min(54rem,calc(100svh-4.5rem))] items-center gap-6 pb-36 pt-8 sm:pt-10 lg:grid-cols-12 lg:gap-4 lg:pb-44 lg:pt-6">
+      <Container className="relative grid min-h-[min(54rem,calc(100svh-4.5rem))] items-center gap-6 pb-16 pt-8 sm:pt-10 lg:grid-cols-12 lg:gap-4 lg:pb-20 lg:pt-6">
         {/* ── copy ── */}
         <div className="relative z-20 lg:col-span-6 xl:col-span-5">
           <p className="hero-fade inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-2 pr-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75 backdrop-blur" style={d(0)}>
@@ -90,7 +90,6 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* bottom fade into the trip planner band */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );

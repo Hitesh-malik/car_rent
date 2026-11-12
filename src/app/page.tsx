@@ -2,7 +2,6 @@ import { siteConfig } from "@/config/site";
 import { getAllCars } from "@/lib/cars";
 import { carDisplayName } from "@/lib/whatsapp";
 import { Hero } from "@/components/home/Hero";
-import { PlanBand } from "@/components/home/PlanBand";
 import { FeaturedFleet } from "@/components/home/FeaturedFleet";
 import { Showroom } from "@/components/home/Showroom";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
@@ -50,7 +49,6 @@ export default function HomePage() {
     <PageTransition>
       <JsonLd data={jsonLd} />
       <Hero />
-      <PlanBand />
       <FeaturedFleet />
       <Showroom />
       <WhyChooseUs />
