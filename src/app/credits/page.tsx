@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Image credits",
-  description: "Attribution for the vehicle photographs and 3D model used on this website.",
+  description: "Attribution for the vehicle photographs used on this website.",
   alternates: { canonical: "/credits" },
 };
 
@@ -64,27 +64,6 @@ export default function CreditsPage() {
             </section>
           ))}
 
-          <section aria-labelledby="credit-3d">
-            <h2 id="credit-3d" className="text-lg font-bold tracking-[-0.02em] text-ink">
-              3D sample model
-            </h2>
-            <p className="mt-3 rounded-2xl border border-line p-4 text-sm text-muted">
-              <a
-                href="https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/CarConcept"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-ink underline-offset-2 hover:text-racing hover:underline"
-              >
-                “Car Concept”
-              </a>{" "}
-              by Eric Chadwick / Darmstadt Graphics Group GmbH, based on a public-domain model by Unity Fan —{" "}
-              <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
-                CC BY 4.0
-              </a>
-              . Optimised for the web (meshopt geometry, WebP textures). Shown as a representative sample, not a model of any
-              specific vehicle in the fleet.
-            </p>
-          </section>
         </div>
       </Container>
     </PageTransition>

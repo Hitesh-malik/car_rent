@@ -25,8 +25,8 @@ export const FAQ_ITEMS: FaqItem[] = [
     a: "Specifications are indicative and may vary by variant. If a particular feature matters to you, just ask and we'll confirm it for the car you'll receive.",
   },
   {
-    q: "Is the 3D model the actual car?",
-    a: "The 3D showroom uses a representative sample model so you can explore a car in real time. The photo gallery on each car page shows the actual vehicle type.",
+    q: "Are the photos of the actual cars?",
+    a: "The showroom and car pages use genuine photographs of each vehicle model. Colour and trim of the exact car you receive may differ — ask us on WhatsApp if a specific colour matters to you.",
   },
   {
     q: "When can I reach the team?",

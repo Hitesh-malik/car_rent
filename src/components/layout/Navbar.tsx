@@ -14,7 +14,7 @@ import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { buttonClasses, ArrowNudge } from "@/components/ui/Button";
 
-const SECTION_IDS = ["showroom", "how-it-works", "faq", "contact"] as const;
+const SECTION_IDS = ["how-it-works", "faq", "contact"] as const;
 
 /** Tracks which home-page section is in view so the matching nav link can be highlighted. */
 function useActiveSection(enabled: boolean) {
@@ -43,7 +43,7 @@ function isActive(item: NavItem, pathname: string, section: string | null) {
   const [path, hash] = item.href.split("#");
   if (item.href === "/cars") return pathname === "/cars" || pathname.startsWith("/cars/");
   if (pathname !== (path || "/")) return false;
-  return hash ? section === hash : false;
+  return hash ? section === hash : true;
 }
 
 const cars = getAllCars();
@@ -184,7 +184,9 @@ export function Navbar() {
                         layoutId="nav-active"
                         className="absolute inset-0 -z-10 rounded-full bg-white/[0.08] ring-1 ring-inset ring-white/10"
                         transition={{ type: "spring", stiffness: 420, damping: 36 }}
-                      />
+                      >
+                        <span className="absolute bottom-[3px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-bright shadow-[0_0_8px_rgb(255_51_79/0.8)]" />
+                      </m.span>
                     )}
                     {item.label}
                   </Link>

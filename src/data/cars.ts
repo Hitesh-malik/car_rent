@@ -247,12 +247,6 @@ export const cars: Car[] = [
       img("mercedes-benz-c-class", "dashboard.jpg", "Mercedes-Benz C-Class dashboard with portrait touchscreen", "dashboard", 1800, 1350),
       img("mercedes-benz-c-class", "interior.jpg", "Mercedes-Benz C-Class front cabin and centre console", "interior", 1800, 1350),
     ],
-    model3d: {
-      src: "/models/concept-car.glb",
-      cameraPosition: [5.2, 1.7, 6.2],
-      isRepresentative: true,
-      credit: "Sample “Car Concept” model by Eric Chadwick / Darmstadt Graphics Group, CC BY 4.0",
-    },
     featured: true,
   },
 ];

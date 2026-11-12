@@ -64,8 +64,8 @@ export function Hero() {
               </ButtonLink>
             </div>
             <div className="hero-fade" style={d(560)}>
-              <ButtonLink href="/#showroom" size="lg" variant="outlineDark" className="w-full min-[440px]:w-auto">
-                Enter 3D Showroom
+              <ButtonLink href="/showroom" size="lg" variant="outlineDark" className="w-full min-[440px]:w-auto">
+                Enter the Showroom
               </ButtonLink>
             </div>
           </div>

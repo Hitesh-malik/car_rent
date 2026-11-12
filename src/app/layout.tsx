@@ -60,7 +60,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable} antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${inter.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#main"

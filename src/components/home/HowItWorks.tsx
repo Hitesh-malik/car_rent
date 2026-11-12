@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EASE_OUT } from "@/lib/motion";
 
 const STEPS = [
-  { n: "01", icon: CarFront, title: "Explore your car", body: "Browse the fleet, compare specs and walk around it in 3D." },
+  { n: "01", icon: CarFront, title: "Explore your car", body: "Browse the fleet, compare specs and see every angle in the showroom." },
   { n: "02", icon: CalendarRange, title: "Select your dates", body: "Add pickup and return details in the trip planner." },
   { n: "03", icon: CircleCheckBig, title: "Confirm your booking", body: "We confirm availability, price and terms with you on WhatsApp." },
   { n: "04", icon: Route, title: "Enjoy your journey", body: "Collect a clean, checked car and hit the road." },

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { m, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
-import { ArrowUpRight, Box } from "lucide-react";
+import { ArrowUpRight, ScanEye } from "lucide-react";
 import type { Car } from "@/types/car";
 import { carDisplayName } from "@/lib/whatsapp";
 
@@ -102,11 +102,11 @@ export function HeroStage({ car, wordmark }: { car: Car; wordmark: string }) {
         <div className="hero-fade absolute left-[8%] top-[10%] z-20 hidden md:block" style={d(1000)}>
           <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-night/70 p-2.5 pr-4 shadow-[0_20px_40px_-20px_rgb(0_0_0/0.8)] backdrop-blur-md [transform:translateZ(70px)]">
             <span className="inline-flex size-9 items-center justify-center rounded-xl bg-racing/15 text-soft-red ring-1 ring-inset ring-racing/30">
-              <Box className="size-[18px]" aria-hidden />
+              <ScanEye className="size-[18px]" aria-hidden />
             </span>
             <span>
-              <span className="block text-sm font-semibold text-white">Interactive 3D</span>
-              <span className="block text-xs text-white/50">Rotate &amp; zoom in the showroom</span>
+              <span className="block text-sm font-semibold text-white">Digital showroom</span>
+              <span className="block text-xs text-white/50">Every angle, every detail</span>
             </span>
           </div>
         </div>

@@ -26,7 +26,7 @@ export const siteConfig = {
 
   nav: [
     { label: "Explore Cars", href: "/cars" },
-    { label: "3D Showroom", href: "/#showroom" },
+    { label: "Showroom", href: "/showroom" },
     { label: "How It Works", href: "/#how-it-works" },
     { label: "FAQ", href: "/#faq" },
     { label: "Contact", href: "/#contact" },
