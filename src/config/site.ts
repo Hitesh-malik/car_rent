@@ -25,11 +25,18 @@ export const siteConfig = {
   },
 
   nav: [
-    { label: "Home", href: "/" },
-    { label: "Explore Cars", href: "/#fleet" },
+    { label: "Explore Cars", href: "/cars" },
+    { label: "Showroom", href: "/showroom" },
     { label: "How It Works", href: "/#how-it-works" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Contact", href: "/#contact" },
   ],
+
+  /**
+   * Social profiles shown in the footer. Add entries like
+   * { label: "Instagram", href: "https://instagram.com/yourbrand" } — nothing renders while the list is empty.
+   */
+  social: [] as ReadonlyArray<{ label: string; href: string }>,
 } as const;
 
 export type NavItem = (typeof siteConfig.nav)[number];

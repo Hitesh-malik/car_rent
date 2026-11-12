@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Image credits",
-  description: "Attribution for the vehicle photographs and 3D model used on this website.",
+  description: "Attribution for the vehicle photographs used on this website.",
   alternates: { canonical: "/credits" },
 };
 
@@ -20,24 +20,32 @@ export default function CreditsPage() {
 
   return (
     <PageTransition>
-      <Container className="max-w-4xl py-16 sm:py-24">
-        <Eyebrow>Attribution</Eyebrow>
-        <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-ink sm:text-5xl">Image credits</h1>
-        <p className="mt-4 max-w-2xl text-muted">
-          Vehicle photographs are sourced from Wikimedia Commons under the licences listed below and are used as placeholders
-          for illustration. Images were resized for the web; no other changes were made.
-        </p>
+      <section className="stage-dark relative isolate overflow-hidden pb-16 pt-10 text-white sm:pb-20 sm:pt-14">
+        <div aria-hidden className="absolute -right-20 -top-40 -z-10 h-[26rem] w-[40rem] rounded-full bg-racing/8 blur-[110px]" />
+        <Container className="[&>*]:max-w-4xl">
+          <Eyebrow tone="dark">Attribution</Eyebrow>
+          <h1 className="mt-5 font-[family-name:var(--font-display)] text-4xl font-bold tracking-[-0.045em] sm:text-6xl">
+            Image <span className="text-white/55">credits</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-white/60">
+            Vehicle photographs are sourced from Wikimedia Commons under the licences listed below and are used as placeholders
+            for illustration. Images were resized for the web; no other changes were made.
+          </p>
+        </Container>
+      </section>
 
-        <div className="mt-12 space-y-10">
+      <Container className="py-16 sm:py-20 [&>*]:max-w-4xl">
+
+        <div className="space-y-10">
           {Object.entries(byCar).map(([car, items]) => (
             <section key={car} aria-labelledby={`credit-${items[0].src}`}>
-              <h2 id={`credit-${items[0].src}`} className="text-lg font-semibold tracking-[-0.02em] text-ink">
+              <h2 id={`credit-${items[0].src}`} className="text-lg font-bold tracking-[-0.02em] text-ink">
                 {car}
               </h2>
-              <ul className="mt-3 divide-y divide-line rounded-2xl border border-line">
+              <ul className="mt-3 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
                 {items.map((c) => (
                   <li key={c.src} className="flex flex-col gap-1 p-4 text-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                    <a href={c.pageUrl} target="_blank" rel="noopener noreferrer" className="min-w-0 break-words font-medium text-ink underline-offset-2 hover:underline">
+                    <a href={c.pageUrl} target="_blank" rel="noopener noreferrer" className="min-w-0 break-words font-medium text-ink underline-offset-2 hover:text-racing hover:underline">
                       {c.title}
                     </a>
                     <span className="shrink-0 text-muted">
@@ -56,27 +64,6 @@ export default function CreditsPage() {
             </section>
           ))}
 
-          <section aria-labelledby="credit-3d">
-            <h2 id="credit-3d" className="text-lg font-semibold tracking-[-0.02em] text-ink">
-              3D sample model
-            </h2>
-            <p className="mt-3 rounded-2xl border border-line p-4 text-sm text-muted">
-              <a
-                href="https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/CarConcept"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-ink underline-offset-2 hover:underline"
-              >
-                “Car Concept”
-              </a>{" "}
-              by Eric Chadwick / Darmstadt Graphics Group GmbH, based on a public-domain model by Unity Fan —{" "}
-              <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
-                CC BY 4.0
-              </a>
-              . Optimised for the web (meshopt geometry, WebP textures). Shown as a representative sample, not a model of any
-              specific vehicle in the fleet.
-            </p>
-          </section>
         </div>
       </Container>
     </PageTransition>

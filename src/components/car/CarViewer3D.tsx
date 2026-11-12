@@ -41,20 +41,24 @@ function CarModel({ src, scale = 1 }: { src: string; scale?: number }) {
   );
 }
 
-/** Studio lighting built from local light panels — no HDRI download. */
+/** Night-studio lighting built from local light panels (no HDRI download), with a racing-red rim. */
 function StudioLights() {
   return (
     <>
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 8, 4]} intensity={1.4} castShadow shadow-mapSize={[1024, 1024]} />
+      <ambientLight intensity={0.25} />
+      <directionalLight position={[4, 8, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
+      <pointLight position={[-5, 1.2, -4]} intensity={18} color="#d83a4e" distance={14} />
       <Environment resolution={256} frames={1}>
+        <color attach="background" args={["#151619"]} />
         <group rotation={[-Math.PI / 3, 0, 0]}>
-          <Lightformer form="rect" intensity={4} position={[0, 5, -9]} scale={[10, 10, 1]} />
+          <Lightformer form="rect" intensity={3} position={[0, 5, -9]} scale={[10, 10, 1]} />
           {[2, 0, 2, 0, 2, 0].map((x, i) => (
-            <Lightformer key={i} form="circle" intensity={2} rotation={[Math.PI / 2, 0, 0]} position={[x, 4, i * 4 - 10]} scale={[4, 1, 1]} />
+            <Lightformer key={i} form="circle" intensity={1.6} rotation={[Math.PI / 2, 0, 0]} position={[x, 4, i * 4 - 10]} scale={[4, 1, 1]} />
           ))}
-          <Lightformer form="rect" intensity={2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[50, 2, 1]} />
-          <Lightformer form="rect" intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[50, 2, 1]} />
+          <Lightformer form="rect" intensity={1.4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[50, 2, 1]} />
+          {/* red light strips — reflect along the bodywork */}
+          <Lightformer form="rect" color="#d83a4e" intensity={5} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[50, 1.5, 1]} />
+          <Lightformer form="ring" color="#d83a4e" intensity={3} position={[-6, 3, 6]} scale={3} />
         </group>
       </Environment>
     </>
@@ -84,14 +88,25 @@ function LoadOverlay() {
       aria-hidden={done}
       className={`absolute inset-0 z-10 transition-opacity duration-500 ${done ? "pointer-events-none opacity-0" : "opacity-100"}`}
     >
-      <Viewer3DSkeleton progress={progress} />
+      <Viewer3DSkeleton progress={progress} fill />
     </div>
   );
 }
 
 /* ───────────── viewer ───────────── */
 
-export default function CarViewer3D({ model, name, onExit }: { model: Car3DModel; name: string; onExit: () => void }) {
+export default function CarViewer3D({
+  model,
+  name,
+  onExit,
+  className,
+}: {
+  model: Car3DModel;
+  name: string;
+  onExit: () => void;
+  /** Overrides the default aspect-ratio classes. */
+  className?: string;
+}) {
   const controls = useRef<CameraControlsImpl>(null);
   const [coarse, setCoarse] = useState(false);
   const camera = model.cameraPosition ?? DEFAULT_CAMERA;
@@ -121,13 +136,13 @@ export default function CarViewer3D({ model, name, onExit }: { model: Car3DModel
   }
 
   const failed = (
-    <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-[var(--radius-panel)] border border-line bg-mist px-6 text-center sm:aspect-[16/10]">
-      <p className="font-semibold text-ink">We couldn&apos;t load the 3D model</p>
-      <p className="mt-1 text-sm text-muted">Please check your connection, or explore the photos instead.</p>
+    <div className="flex aspect-[4/3] flex-col items-center justify-center rounded-[var(--radius-panel)] border border-white/10 bg-night-2 px-6 text-center sm:aspect-[16/10]">
+      <p className="font-semibold text-white">We couldn&apos;t load the 3D model</p>
+      <p className="mt-1 text-sm text-white/55">Please check your connection, or explore the photos instead.</p>
       <button
         type="button"
         onClick={onExit}
-        className="mt-5 inline-flex h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-white hover:bg-ink-soft"
+        className="mt-5 inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink transition-colors hover:bg-racing hover:text-white"
       >
         <Images className="size-4" aria-hidden />
         Back to photos
@@ -138,10 +153,13 @@ export default function CarViewer3D({ model, name, onExit }: { model: Car3DModel
   return (
     <ModelErrorBoundary fallback={failed}>
       <div
-        className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] bg-gradient-to-b from-white via-[#f8f9fb] to-surface sm:aspect-[16/10]"
+        className={`relative overflow-hidden rounded-[var(--radius-panel)] border border-white/[0.08] bg-[radial-gradient(ellipse_70%_55%_at_50%_72%,#211f23_0%,#1b1c20_45%,#151619_100%)] ${className ?? "aspect-[4/3] sm:aspect-[16/10]"}`}
         role="img"
         aria-label={`Interactive 3D model${model.isRepresentative ? " (representative sample)" : ""} for the ${name}. Drag to rotate, scroll or pinch to zoom.`}
       >
+        {/* floor light + horizon line */}
+        <div aria-hidden className="pointer-events-none absolute inset-x-[15%] bottom-[16%] h-[22%] rounded-[50%] bg-[radial-gradient(closest-side,rgb(216_58_78/0.11),transparent)] blur-xl" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[62%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         <Canvas
           frameloop="demand"
           dpr={[1, 2]}
@@ -155,7 +173,7 @@ export default function CarViewer3D({ model, name, onExit }: { model: Car3DModel
           <Suspense fallback={null}>
             <StudioLights />
             <CarModel src={model.src} scale={model.scale} />
-            <ContactShadows position={[0, 0.001, 0]} opacity={0.5} scale={12} blur={2.4} far={4} resolution={512} frames={1} />
+            <ContactShadows position={[0, 0.001, 0]} opacity={0.85} scale={12} blur={2.2} far={4} resolution={512} frames={1} color="#000000" />
           </Suspense>
           <CameraControls
             ref={configure}
@@ -174,24 +192,24 @@ export default function CarViewer3D({ model, name, onExit }: { model: Car3DModel
         {(model.isRepresentative || model.credit) && (
           <div className="pointer-events-none absolute left-3 top-3 max-w-[75%] sm:left-4 sm:top-4">
             {model.isRepresentative && (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-ink shadow-[var(--shadow-soft)] backdrop-blur">
-                <Info className="size-3.5 text-accent" aria-hidden />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-night/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
+                <Info className="size-3.5 text-soft-red" aria-hidden />
                 Representative sample model
               </span>
             )}
-            {model.credit && <p className="mt-1.5 pl-1 text-[10px] leading-tight text-muted">{model.credit}</p>}
+            {model.credit && <p className="mt-1.5 pl-1 text-[10px] leading-tight text-white/55">{model.credit}</p>}
           </div>
         )}
 
         {/* bottom controls */}
         <div className="pointer-events-none absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 sm:inset-x-4 sm:bottom-4">
-          <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-ink-soft backdrop-blur">
+          <span className="rounded-full border border-white/10 bg-night/70 px-3 py-1.5 text-xs font-medium text-white/75 backdrop-blur">
             {coarse ? "Drag to rotate • Pinch to zoom" : "Drag to explore • Scroll to zoom"}
           </span>
           <button
             type="button"
             onClick={() => controls.current?.reset(true)}
-            className="pointer-events-auto inline-flex h-11 items-center gap-2 rounded-full bg-white/90 px-4 text-sm font-semibold text-ink shadow-[var(--shadow-soft)] backdrop-blur transition-colors hover:bg-white"
+            className="pointer-events-auto inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-night/70 px-4 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-racing hover:bg-racing"
           >
             <RotateCcw className="size-4" aria-hidden />
             <span className="hidden sm:inline">Reset view</span>

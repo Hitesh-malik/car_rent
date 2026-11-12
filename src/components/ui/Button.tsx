@@ -2,22 +2,33 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "dark" | "outline" | "ghost" | "light" | "whatsapp";
-type Size = "md" | "lg";
+/**
+ * primary   – muted racing red (main CTA, any background)
+ * dark      – black (on light backgrounds)
+ * outline   – hairline on light backgrounds
+ * outlineDark – hairline on dark backgrounds
+ * ghost     – text-only on light
+ * light     – white (on dark/red backgrounds)
+ * whatsapp  – black that turns WhatsApp green on hover
+ */
+type Variant = "primary" | "dark" | "outline" | "outlineDark" | "ghost" | "light" | "whatsapp";
+type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/btn relative inline-flex select-none items-center justify-center gap-2 rounded-full font-semibold tracking-[-0.01em] transition-[background-color,color,border-color,box-shadow,transform] duration-200 ease-[var(--ease-out-expo)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50";
+  "group/btn relative isolate inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full font-semibold tracking-[-0.01em] transition-[background-color,color,border-color,box-shadow,transform] duration-300 ease-[var(--ease-out-expo)] active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-white shadow-[0_8px_20px_-10px_rgb(37_99_235/0.7)] hover:bg-accent-strong",
-  dark: "bg-ink text-white hover:bg-ink-soft",
-  outline: "border border-line bg-canvas text-ink hover:border-ink/25 hover:bg-mist",
+  primary: "bg-racing text-white shadow-[var(--shadow-btn)] hover:bg-racing-deep",
+  dark: "bg-night text-white hover:bg-charcoal-2",
+  outline: "border border-line bg-white text-ink hover:border-ink/30 hover:bg-mist",
+  outlineDark: "border border-white/20 bg-transparent text-white hover:border-white/40 hover:bg-white/[0.06]",
   ghost: "text-ink hover:bg-surface",
-  light: "bg-white text-ink hover:bg-accent hover:text-white",
-  whatsapp: "bg-ink text-white hover:bg-whatsapp",
+  light: "bg-white text-ink hover:bg-mist",
+  whatsapp: "bg-night text-white hover:bg-whatsapp",
 };
 
 const sizes: Record<Size, string> = {
+  sm: "h-10 px-4 text-[13px]",
   md: "h-11 px-5 text-sm",
   lg: "h-13 px-7 text-[15px]",
 };
@@ -34,7 +45,7 @@ export function ArrowNudge({ className }: { className?: string }) {
   return (
     <ArrowRight
       aria-hidden
-      className={cn("size-4 transition-transform duration-200 ease-[var(--ease-out-expo)] group-hover/btn:translate-x-1", className)}
+      className={cn("size-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover/btn:translate-x-1", className)}
     />
   );
 }

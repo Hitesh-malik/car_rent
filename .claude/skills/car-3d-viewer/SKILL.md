@@ -7,15 +7,16 @@ description: How the Roy Rentals interactive 3D car viewer works (React Three Fi
 
 ## Architecture
 
-- `CarShowcase` (client) owns the Photos | 3D View toggle.
-- `CarViewer3D` is loaded with `next/dynamic(..., { ssr: false })` **from a client component**, so `three`, `@react-three/fiber` and `@react-three/drei` are only downloaded after the visitor picks 3D View. Never import them from a server component or the home page.
-- Cars without `model3d` in `src/data/cars.ts` render `Viewer3DUnavailable` — never an empty canvas.
+- **No car currently has a 3D model.** The generic "Car Concept" sample was removed because it misrepresented the C-Class.
+- The `/showroom` page (`StudioViewer`) uses real photography. It shows a **3D** mode only for a car whose `model3d` is accurate (`isRepresentative` not set) and mounts `CarViewer3D` only when the visitor picks it.
+- Never attach a stand-in/generic model to a real vehicle record — a real photo is better than an inaccurate model.
+- `CarViewer3D` is loaded with `next/dynamic(..., { ssr: false })` **from a client component**, so `three`, `@react-three/fiber` and `@react-three/drei` are only downloaded after the visitor picks 3D View. Never import them statically from a server component or the home page — always via `next/dynamic` behind a user action.
 - Load failures are caught by an error boundary inside the viewer, which offers "Back to photos".
 
 ## Rendering setup (keep it)
 
 - `<Canvas frameloop="demand" dpr={[1, 2]} shadows camera={{ fov: 32 }}>` — demand rendering keeps idle GPU at zero.
-- Lighting: drei `<Environment resolution={256}>` built from `<Lightformer>` panels (local, no HDRI download) + one soft key light. White/very light grey background.
+- Lighting: drei `<Environment resolution={256}>` built from `<Lightformer>` panels (local, no HDRI download) including red `#ff334f` rim strips, plus one key light and a red point light. Dark night-studio look: CSS radial gradient behind a transparent canvas with a red floor glow.
 - Grounding: `<ContactShadows>` at y = 0, model centred on X/Z with `<Center disableY>` (models must have wheels at y = 0).
 - Controls: drei `<CameraControls>` — no truck/pan, clamped `minDistance`/`maxDistance`, polar angle limited so the camera never goes under the floor. Reset uses `controls.reset(true)` (animated).
 - Mobile: the canvas has `touch-action: pan-y` so vertical swipes scroll the page; horizontal drag rotates; pinch zooms.
