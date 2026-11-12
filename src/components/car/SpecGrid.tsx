@@ -1,6 +1,7 @@
 import { CarFront, Fuel, Luggage, Settings2, Snowflake, Users } from "lucide-react";
 import type { Car } from "@/types/car";
 
+/** Specification tiles for the dark showroom panel. */
 export function SpecGrid({ car }: { car: Car }) {
   const specs = [
     { icon: Settings2, label: "Transmission", value: car.transmission },
@@ -11,17 +12,15 @@ export function SpecGrid({ car }: { car: Car }) {
     { icon: CarFront, label: "Vehicle type", value: car.categoryLabel },
   ];
   return (
-    <dl className="grid grid-cols-2 border-t border-line">
-      {specs.map(({ icon: Icon, label, value }, i) => (
+    <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+      {specs.map(({ icon: Icon, label, value }) => (
         <div
           key={label}
-          className={`flex gap-3 border-b border-line py-4 ${i % 2 === 0 ? "pr-4" : "border-l pl-4"}`}
+          className="group rounded-2xl border border-white/[0.07] bg-white/[0.03] p-3.5 transition-colors duration-300 hover:border-racing/40 hover:bg-white/[0.05]"
         >
-          <Icon className="mt-0.5 size-[18px] shrink-0 text-ink" strokeWidth={1.6} aria-hidden />
-          <div className="min-w-0">
-            <dt className="text-xs text-muted">{label}</dt>
-            <dd className="mt-0.5 text-sm font-semibold text-ink">{value}</dd>
-          </div>
+          <Icon className="size-[18px] text-soft-red" strokeWidth={1.7} aria-hidden />
+          <dt className="mt-3 text-[11px] uppercase tracking-[0.14em] text-white/45">{label}</dt>
+          <dd className="mt-0.5 text-sm font-semibold leading-snug text-white">{value}</dd>
         </div>
       ))}
     </dl>

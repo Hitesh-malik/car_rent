@@ -39,12 +39,12 @@ export function StickyRentBar({ car, targetId }: { car: Car; targetId: string })
           animate={{ y: 0 }}
           exit={{ y: "110%" }}
           transition={{ duration: 0.4, ease: EASE_OUT }}
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/90 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-night/[0.92] px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden"
         >
           <div className="mx-auto flex max-w-xl items-center gap-3">
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-ink">{carDisplayName(car)}</p>
-              <p className="truncate text-xs text-muted">{formatPrice(car.pricePerDay)}</p>
+              <p className="truncate text-sm font-semibold text-white">{carDisplayName(car)}</p>
+              <p className="truncate text-xs text-white/50">{formatPrice(car.pricePerDay)}</p>
             </div>
             <RentButton car={car} compact className="shrink-0" />
           </div>

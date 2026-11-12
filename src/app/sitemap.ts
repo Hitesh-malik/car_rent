@@ -5,6 +5,7 @@ import { getAllCars } from "@/lib/cars";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteConfig.url, changeFrequency: "weekly", priority: 1 },
+    { url: `${siteConfig.url}/cars`, changeFrequency: "weekly", priority: 0.9 },
     ...getAllCars().map((car) => ({
       url: `${siteConfig.url}/cars/${car.slug}`,
       changeFrequency: "monthly" as const,

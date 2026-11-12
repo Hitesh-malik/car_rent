@@ -39,7 +39,7 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
 
   if (!count) {
     return (
-      <div className="flex aspect-[16/10] items-center justify-center rounded-[var(--radius-panel)] bg-surface text-sm text-muted">
+      <div className="flex aspect-[16/10] items-center justify-center rounded-[var(--radius-panel)] bg-charcoal text-sm text-white/50">
         Photos coming soon
       </div>
     );
@@ -62,10 +62,10 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
           go(index - 1, -1);
         }
       }}
-      className="rounded-[var(--radius-panel)] outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4"
+      className="rounded-[var(--radius-panel)] outline-none focus-visible:ring-2 focus-visible:ring-bright focus-visible:ring-offset-4 focus-visible:ring-offset-night"
     >
       <ViewTransition name={`car-${slug}`} share="morph" default="none">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] bg-surface sm:aspect-[16/10]">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-panel)] bg-charcoal ring-1 ring-white/[0.08] sm:aspect-[16/10]">
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
             <m.div
               key={current.src}
@@ -101,11 +101,12 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
           </AnimatePresence>
 
           {/* overlays */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/30 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-night/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-night/40 to-transparent" />
           <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-2 sm:bottom-5 sm:left-5">
-            <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-ink backdrop-blur" aria-live="polite">
+            <span className="rounded-full border border-white/10 bg-night/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur" aria-live="polite">
               {ANGLE_LABEL[current.angle]}
-              <span className="ml-2 tabular-nums text-muted">
+              <span className="ml-2 tabular-nums text-white/50">
                 {String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
               </span>
             </span>
@@ -116,7 +117,7 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
                 type="button"
                 onClick={() => go(index - 1, -1)}
                 aria-label="Previous photo"
-                className="inline-flex size-11 items-center justify-center rounded-full bg-white/90 text-ink backdrop-blur transition-[background-color,transform] hover:bg-white active:scale-95"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-night/70 text-white backdrop-blur transition-[background-color,border-color,transform] hover:border-racing hover:bg-racing active:scale-95"
               >
                 <ChevronLeft className="size-5" aria-hidden />
               </button>
@@ -124,7 +125,7 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
                 type="button"
                 onClick={() => go(index + 1, 1)}
                 aria-label="Next photo"
-                className="inline-flex size-11 items-center justify-center rounded-full bg-white/90 text-ink backdrop-blur transition-[background-color,transform] hover:bg-white active:scale-95"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 bg-night/70 text-white backdrop-blur transition-[background-color,border-color,transform] hover:border-racing hover:bg-racing active:scale-95"
               >
                 <ChevronRight className="size-5" aria-hidden />
               </button>
@@ -145,8 +146,8 @@ export function CarGallery({ images, slug, name }: { images: CarImage[]; slug: s
                   aria-label={`Show photo ${i + 1}: ${img.alt}`}
                   aria-current={active ? "true" : undefined}
                   className={cn(
-                    "relative block h-16 w-24 overflow-hidden rounded-xl bg-surface transition-[opacity,box-shadow] duration-200 sm:h-[4.5rem] sm:w-28",
-                    active ? "opacity-100 ring-2 ring-accent ring-offset-2" : "opacity-60 hover:opacity-100",
+                    "relative block h-16 w-24 overflow-hidden rounded-xl bg-charcoal transition-[opacity,box-shadow] duration-200 sm:h-[4.5rem] sm:w-28",
+                    active ? "opacity-100 ring-2 ring-racing ring-offset-2 ring-offset-night" : "opacity-45 hover:opacity-100",
                   )}
                 >
                   <Image src={img.src} alt="" fill sizes="112px" className="object-cover" style={{ objectPosition: img.focus ?? "50% 55%" }} />

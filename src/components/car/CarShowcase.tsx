@@ -25,7 +25,7 @@ export function CarShowcase({ car }: { car: Car }) {
     <div>
       <div className="mb-4 flex items-center justify-between gap-3">
         <ViewToggle value={mode} onChange={setMode} has3D={Boolean(car.model3d)} />
-        <p className="hidden text-xs text-muted sm:block">
+        <p className="hidden text-xs font-medium uppercase tracking-[0.16em] text-white/45 sm:block">
           {mode === "photos" ? `${car.images.length} photos` : car.model3d ? "Interactive 3D" : "3D preview"}
         </p>
       </div>

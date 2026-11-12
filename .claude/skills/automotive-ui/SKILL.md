@@ -1,53 +1,42 @@
 ---
 name: automotive-ui
-description: Visual design standards for the Roy Rentals car showroom (Next.js + Tailwind v4). Use when creating or changing any page, section, card, button, layout or responsive behaviour in this project, so new UI matches the premium white automotive design system instead of drifting toward a generic template.
+description: Visual design standards for the Roy Rentals car showroom (Next.js + Tailwind v4). Use when creating or changing any page, section, card, button, layout or responsive behaviour in this project, so new UI matches the premium Black + Racing-Red automotive design system instead of drifting toward a generic template.
 ---
 
-# Automotive UI standards
+# Automotive UI standards — Black + Racing Red
 
-The site should feel like a calm, premium showroom: white canvas, charcoal type, silver-grey surfaces, one restrained blue accent. The car photography is the hero; the UI frames it.
+A night showroom: black stages lit with racing-red light, alternating with bright white "gallery" sections. Red is light and accent, never a flat background. The car photography is the hero.
 
-## Tokens (defined in `src/app/globals.css` `@theme` — never hard-code hex values in components)
+## Tokens (`src/app/globals.css` `@theme` — never hard-code hex values in components except inside gradients)
 
 | Token | Use |
 | --- | --- |
-| `canvas` #FFFFFF | page background |
-| `mist` #F7F8FA | alternating section background, footer |
-| `surface` #F2F4F7 | image frames, skeleton base, card media |
-| `ink` / `ink-soft` | primary text, dark buttons, CTA band |
-| `muted` #737983 | secondary text, meta, inactive controls |
-| `line` #E7E9ED | every border and divider |
-| `accent` #2563EB | primary CTA, active indicators, focus ring — sparingly |
-| `whatsapp` | hover state of WhatsApp buttons only |
+| `night` #0B0B0D | hero, showroom, car detail top, similar cars, footer |
+| `night-2` #141419 / `charcoal` #202027 | raised dark surfaces, dark cards (`CarCard tone="dark"`), panels |
+| `racing` #E63946 | primary accent, icons, active states |
+| `bright` #FF334F / `soft-red` #FF6678 | interactive highlights, glows, icons on dark |
+| `canvas` #FFF / `mist` #F7F7F8 | light sections (alternate them) |
+| `line` #E5E5E7, `muted` #777780, `ink-soft` | borders, meta, body text on light |
 
-Radii: `--radius-card` (cards), `--radius-panel` (galleries, large panels), `rounded-full` (buttons, pills, chips). Shadows: `--shadow-soft` (resting floating UI), `--shadow-lift` (hovered cards, menus). No other shadows.
+Utilities: `text-red-gradient` (one phrase per heading, max), `grid-lines`, `grain`, `glow-pulse`, `skeleton` / `skeleton-dark`, `race-line`.
+Primary CTA gradient: `linear-gradient(135deg,#ff334f,#e63946 42%,#b81d30)` + `--shadow-btn` (use `buttonClasses({ variant: "primary" })`).
 
-## Typography (Manrope via `next/font`, variable `--font-manrope`)
+## Section rhythm
 
-- Display/H1: `font-semibold`, tracking `-0.045em`, leading `~1.0`. H2: `text-3xl → lg:text-[3.25rem]`, tracking `-0.035em`.
-- Eyebrows: the `<Eyebrow>` component (12px uppercase, `tracking-[0.18em]`, accent rule). Do not invent other all-caps styles.
-- Body: `text-muted`, `leading-relaxed`, `text-pretty`; headings `text-balance`.
-- One `<h1>` per page. Sections use `<h2>` via `SectionHeading`; cards use `<h3>`.
+Every page starts dark so it meets the sticky dark header, then light content, dark accent sections, dark footer. Never stack more than two dark sections and never make a whole page dark. Red lighting = blurred radial gradients (`bg-racing/20 blur-[100px]`) and 1px red hairlines, not red fills.
+
+## Typography
+
+Manrope (`--font-display`, applied to h1–h4) + Inter (body). Hero/page H1: extrabold, uppercase, tracking ≈ -0.05em, leading ≈ 0.9. H2 via `SectionHeading` (bold, -0.04em). `Eyebrow` for all small-caps labels (red rule + dot). One `<h1>` per page.
+
+## Components to reuse
+
+`ButtonLink` / `buttonClasses` (primary, dark, outline, outlineDark, ghost, light, whatsapp), `SectionHeading` / `Eyebrow` (`tone="dark"` on dark), `Container`, `Reveal*`, `ImageWithFallback` (`tone`), `CarCard` (`tone`), `TiltCard`, `Field` / `inputClasses`, `TripPlanner` (`variant="search" | "panel"`), `RentButton`, `CATEGORY_META`, `buildWhatsAppUrl` / `buildTripWhatsAppUrl`.
 
 ## Layout
 
-- Wrap content in `<Container>` (max 1320px, gutters `px-4 sm:px-8 lg:px-10`). Section rhythm: `py-20 sm:py-28`.
-- Grids: fleet `1 → sm:2 → xl:3` columns; detail page `lg` 60/40 split with the showcase sticky.
-- Must work from 320px wide: no fixed widths wider than the viewport, horizontal scrollers get `no-scrollbar` and negative-margin bleed, touch targets ≥ 44px (`size-11`, `h-11`).
+`Container` (max 1320px). Sections `py-20 sm:py-28`. Floating panels overlap dark→light seams with negative margins — add `flow-root` to the parent so the margin doesn't collapse. Sticky columns need ancestors with `overflow-clip`, not `overflow-hidden`. Must work from 320px; touch targets ≥ 44px.
 
-## Components to reuse (don't re-implement)
+## Honesty rules
 
-- `ButtonLink` / `buttonClasses` (variants: primary, dark, outline, ghost, light, whatsapp) with `ArrowNudge`.
-- `SectionHeading`, `Eyebrow`, `Container`, `Reveal` / `RevealGroup` / `RevealItem`.
-- `ImageWithFallback` for any non-hero photo (skeleton + missing-image state).
-- `CarCard` for every car listing (home grid, similar cars).
-- `buildWhatsAppUrl(car)` from `src/lib/whatsapp.ts` for every enquiry link; config lives in `src/config/site.ts`.
-
-## Imagery
-
-- Car photos sit in `surface` frames with `object-cover` and a per-image `focus` (object-position) from `src/data/cars.ts` so the car is never cropped off.
-- New photos go in `public/cars/<slug>/` and must be added to `src/data/image-credits.json` if they need attribution.
-
-## Avoid
-
-Gradients beyond a soft mist→white wash, glassmorphism outside small overlay chips, heavy shadows, decorative blobs, fake ratings/stats/testimonials, more than one accent colour.
+No fake ratings, testimonials, stats, discounts, availability or payments. Booking = WhatsApp enquiry; prices show "Price on inquiry" until `pricePerDay` is set (price filters/sorts appear automatically then).

@@ -2,10 +2,13 @@ import { siteConfig } from "@/config/site";
 import { getAllCars } from "@/lib/cars";
 import { carDisplayName } from "@/lib/whatsapp";
 import { Hero } from "@/components/home/Hero";
-import { Fleet } from "@/components/home/Fleet";
+import { PlanBand } from "@/components/home/PlanBand";
+import { FeaturedFleet } from "@/components/home/FeaturedFleet";
+import { Showroom } from "@/components/home/Showroom";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { PromoBanner } from "@/components/home/PromoBanner";
 import { HowItWorks } from "@/components/home/HowItWorks";
-import { FinalCta } from "@/components/home/FinalCta";
+import { FaqSection, FAQ_ITEMS } from "@/components/home/FaqSection";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -32,16 +35,28 @@ export default function HomePage() {
         name: carDisplayName(car),
       })),
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ_ITEMS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
   ];
 
   return (
     <PageTransition>
       <JsonLd data={jsonLd} />
       <Hero />
-      <Fleet />
+      <PlanBand />
+      <FeaturedFleet />
+      <Showroom />
       <WhyChooseUs />
+      <PromoBanner />
       <HowItWorks />
-      <FinalCta />
+      <FaqSection />
     </PageTransition>
   );
 }

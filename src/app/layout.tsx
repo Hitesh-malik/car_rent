@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,6 +8,12 @@ import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -48,17 +54,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#0b0b0d",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${manrope.variable} antialiased`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#main"
-          className="sr-only z-[100] rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-[100] rounded-full bg-racing px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Skip to content
         </a>

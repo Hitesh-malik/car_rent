@@ -1,0 +1,285 @@
+"use client";
+
+import { useId, useState, useSyncExternalStore } from "react";
+import { AnimatePresence, m } from "motion/react";
+import { ArrowRight, CalendarDays, CarFront, CheckCircle2, Clock, MapPin } from "lucide-react";
+import type { Car } from "@/types/car";
+import { buildTripWhatsAppUrl, type TripDetails } from "@/lib/whatsapp";
+import { rentalDays, toDateInput, validateTrip, type TripErrors } from "@/lib/trip";
+import { cn } from "@/lib/cn";
+import { EASE_OUT } from "@/lib/motion";
+import { Field, inputClasses } from "@/components/ui/Field";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+
+/* Today's date for `min` — read on the client only (the static shell is prerendered without it). */
+const noopSubscribe = () => () => {};
+const useToday = () => useSyncExternalStore(noopSubscribe, () => toDateInput(new Date()), () => "");
+
+const EMPTY: TripDetails = {
+  pickupLocation: "",
+  dropoffLocation: "",
+  pickupDate: "",
+  pickupTime: "10:00",
+  returnDate: "",
+  returnTime: "10:00",
+  vehicleType: "Any",
+};
+
+type Props =
+  | { variant: "search"; vehicleTypes: string[]; car?: undefined; className?: string }
+  | { variant: "panel"; car: Car; vehicleTypes?: undefined; className?: string };
+
+/**
+ * Trip planner: collects locations, dates and times, validates them, then opens WhatsApp with a
+ * pre-filled availability request. There is no booking backend — confirmation happens with the team on WhatsApp.
+ */
+export function TripPlanner(props: Props) {
+  const { variant, className } = props;
+  const car = props.car;
+  const tone = variant === "panel" ? "dark" : "light";
+  const uid = useId();
+  const today = useToday();
+  const [trip, setTrip] = useState<TripDetails>(EMPTY);
+  const [sameReturn, setSameReturn] = useState(true);
+  const [errors, setErrors] = useState<TripErrors>({});
+  const [sent, setSent] = useState(false);
+
+  const days = rentalDays(trip);
+  const estimate = car?.pricePerDay && days ? car.pricePerDay * days : null;
+  const inr = (n: number) => new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
+
+  function update<K extends keyof TripDetails>(key: K, value: TripDetails[K]) {
+    setTrip((t) => {
+      const next = { ...t, [key]: value };
+      // Keep the return date sensible: default to the day after pickup when it's empty or no longer after it.
+      if (key === "pickupDate" && typeof value === "string" && value && (!t.returnDate || t.returnDate <= value)) {
+        const d = new Date(`${value}T12:00`);
+        if (!Number.isNaN(d.getTime())) {
+          d.setDate(d.getDate() + 1);
+          next.returnDate = toDateInput(d);
+        }
+      }
+      return next;
+    });
+    if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
+    setSent(false);
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const details = { ...trip, dropoffLocation: sameReturn ? "" : trip.dropoffLocation };
+    const found = validateTrip(details);
+    if (!sameReturn && (details.dropoffLocation ?? "").trim().length < 2) found.dropoffLocation = "Enter a drop-off location";
+    setErrors(found);
+    if (Object.values(found).some(Boolean)) {
+      const first = Object.keys(found)[0];
+      document.getElementById(`${uid}-${first}`)?.focus();
+      return;
+    }
+    const url = buildTripWhatsAppUrl(details, car);
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (!win) window.location.href = url;
+    setSent(true);
+  }
+
+  const fid = (k: keyof TripDetails) => `${uid}-${k}`;
+  const ctrl = (k: keyof TripDetails) => ({
+    id: fid(k),
+    "aria-invalid": Boolean(errors[k]) || undefined,
+    "aria-describedby": errors[k] ? `${fid(k)}-error` : undefined,
+    className: inputClasses({ tone, invalid: Boolean(errors[k]) }),
+  });
+  const iconCls = cn("size-3.5", tone === "dark" ? "text-soft-red" : "text-racing");
+
+  const locationFields = (
+    <>
+      <Field id={fid("pickupLocation")} label="Pickup location" icon={<MapPin className={iconCls} aria-hidden />} error={errors.pickupLocation} tone={tone}>
+        <input
+          {...ctrl("pickupLocation")}
+          type="text"
+          autoComplete="address-level2"
+          placeholder="City, area or airport"
+          value={trip.pickupLocation}
+          onChange={(e) => update("pickupLocation", e.target.value)}
+        />
+      </Field>
+      {!sameReturn && (
+        <Field id={fid("dropoffLocation")} label="Drop-off location" icon={<MapPin className={iconCls} aria-hidden />} error={errors.dropoffLocation} tone={tone}>
+          <input
+            {...ctrl("dropoffLocation")}
+            type="text"
+            placeholder="Where will you return it?"
+            value={trip.dropoffLocation}
+            onChange={(e) => update("dropoffLocation", e.target.value)}
+          />
+        </Field>
+      )}
+    </>
+  );
+
+  const dateFields = (
+    <>
+      <div className="grid grid-cols-[minmax(0,1fr)_9rem] gap-2">
+        <Field id={fid("pickupDate")} label="Pickup date" icon={<CalendarDays className={iconCls} aria-hidden />} error={errors.pickupDate} tone={tone}>
+          <input {...ctrl("pickupDate")} type="date" min={today || undefined} value={trip.pickupDate} onChange={(e) => update("pickupDate", e.target.value)} />
+        </Field>
+        <Field id={fid("pickupTime")} label="Time" icon={<Clock className={iconCls} aria-hidden />} error={errors.pickupTime} tone={tone}>
+          <input {...ctrl("pickupTime")} type="time" step={900} value={trip.pickupTime} onChange={(e) => update("pickupTime", e.target.value)} />
+        </Field>
+      </div>
+      <div className="grid grid-cols-[minmax(0,1fr)_9rem] gap-2">
+        <Field id={fid("returnDate")} label="Return date" icon={<CalendarDays className={iconCls} aria-hidden />} error={errors.returnDate} tone={tone}>
+          <input
+            {...ctrl("returnDate")}
+            type="date"
+            min={trip.pickupDate || today || undefined}
+            value={trip.returnDate}
+            onChange={(e) => update("returnDate", e.target.value)}
+          />
+        </Field>
+        <Field id={fid("returnTime")} label="Time" icon={<Clock className={iconCls} aria-hidden />} error={errors.returnTime} tone={tone}>
+          <input {...ctrl("returnTime")} type="time" step={900} value={trip.returnTime} onChange={(e) => update("returnTime", e.target.value)} />
+        </Field>
+      </div>
+    </>
+  );
+
+  const sameReturnToggle = (
+    <label className={cn("inline-flex cursor-pointer select-none items-center gap-2.5 text-sm", tone === "dark" ? "text-white/70" : "text-ink-soft")}>
+      <input
+        type="checkbox"
+        checked={sameReturn}
+        onChange={(e) => {
+          setSameReturn(e.target.checked);
+          setErrors((er) => ({ ...er, dropoffLocation: undefined }));
+        }}
+        className="peer sr-only"
+      />
+      <span
+        aria-hidden
+        className={cn(
+          "relative h-5 w-9 rounded-full transition-colors duration-200 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-bright",
+          sameReturn ? "bg-racing" : tone === "dark" ? "bg-white/15" : "bg-ink/15",
+        )}
+      >
+        <span className={cn("absolute top-0.5 size-4 rounded-full bg-white shadow transition-transform duration-200", sameReturn ? "translate-x-[1.1rem]" : "translate-x-0.5")} />
+      </span>
+      Return to the same location
+    </label>
+  );
+
+  const sentNote = (
+    <AnimatePresence>
+      {sent && (
+        <m.p
+          role="status"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: EASE_OUT }}
+          className={cn("flex items-start gap-2 text-[13px] leading-snug", tone === "dark" ? "text-white/70" : "text-ink-soft")}
+        >
+          <CheckCircle2 className="mt-px size-4 shrink-0 text-whatsapp" aria-hidden />
+          WhatsApp opened with your trip details — send the message and our team will confirm availability.
+        </m.p>
+      )}
+    </AnimatePresence>
+  );
+
+  /* ───────── Home search widget (light card) ───────── */
+  if (variant === "search") {
+    return (
+      <form
+        noValidate
+        onSubmit={onSubmit}
+        aria-label="Plan your trip"
+        className={cn(
+          "relative rounded-[1.5rem] border border-white/60 bg-white p-4 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.55),0_0_0_1px_rgb(11_11_13/0.04)] sm:p-6",
+          className,
+        )}
+      >
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <div>
+            <p className="font-[family-name:var(--font-display)] text-lg font-bold tracking-[-0.02em] text-ink">Plan your trip</p>
+            <p className="text-[13px] text-muted">Tell us when and where — we&apos;ll confirm availability on WhatsApp.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <label htmlFor={fid("vehicleType")} className="flex items-center gap-2 text-sm text-ink-soft">
+              <CarFront className={iconCls} aria-hidden />
+              <span className="sr-only sm:not-sr-only">Vehicle</span>
+              <select
+                id={fid("vehicleType")}
+                value={trip.vehicleType}
+                onChange={(e) => update("vehicleType", e.target.value)}
+                className="h-10 rounded-full border border-line bg-mist pl-3.5 pr-8 text-sm font-semibold text-ink outline-none transition-colors hover:border-ink/20 focus:border-racing"
+              >
+                <option value="Any">Any type</option>
+                {props.vehicleTypes.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {sameReturnToggle}
+          </div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)_minmax(0,1.3fr)_auto] lg:items-start">
+          <div className="grid gap-3 sm:grid-cols-2 md:col-span-2 lg:col-span-1 lg:grid-cols-1">{locationFields}</div>
+          {dateFields}
+          <div className="md:col-span-2 lg:col-span-1 lg:pt-[1.4rem]">
+            <button
+              type="submit"
+              className="group/btn relative isolate inline-flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] px-6 text-[15px] font-semibold text-white shadow-[var(--shadow-btn)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-12px_rgb(255_51_79/0.75)] active:scale-[0.98] lg:w-auto"
+            >
+              Check Availability
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden />
+            </button>
+          </div>
+        </div>
+        <div className="mt-3 min-h-0 empty:hidden">{sentNote}</div>
+      </form>
+    );
+  }
+
+  /* ───────── Car detail panel (dark) ───────── */
+  const panelCar = props.car;
+  return (
+    <form noValidate onSubmit={onSubmit} aria-label={`Plan your trip in the ${panelCar.brand} ${panelCar.model}`} className={cn("space-y-3", className)}>
+      {locationFields}
+      <div className="pb-1">{sameReturnToggle}</div>
+      {dateFields}
+
+      {/* pricing breakdown */}
+      <dl className="mt-1 divide-y divide-white/[0.07] rounded-xl border border-white/[0.08] bg-white/[0.03] text-sm">
+        <div className="flex items-center justify-between px-4 py-3">
+          <dt className="text-white/55">Daily rate</dt>
+          <dd className="font-semibold text-white">{panelCar.pricePerDay ? `${inr(panelCar.pricePerDay)} / day` : "On inquiry"}</dd>
+        </div>
+        <div className="flex items-center justify-between px-4 py-3">
+          <dt className="text-white/55">Rental duration</dt>
+          <dd className="font-semibold text-white">{days ? `${days} ${days === 1 ? "day" : "days"}` : "Select dates"}</dd>
+        </div>
+        <div className="flex items-center justify-between px-4 py-3">
+          <dt className="text-white/55">Estimated total</dt>
+          <dd className="font-semibold text-white">{estimate ? inr(estimate) : "Confirmed on WhatsApp"}</dd>
+        </div>
+      </dl>
+
+      <button
+        type="submit"
+        className="group/rent relative isolate flex h-14 w-full items-center justify-between overflow-hidden rounded-full bg-[linear-gradient(135deg,#ff334f_0%,#e63946_42%,#b81d30_100%)] pl-2 pr-6 text-base font-semibold text-white shadow-[var(--shadow-btn)] transition-[transform,box-shadow] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-12px_rgb(255_51_79/0.8)] active:scale-[0.99]"
+      >
+        <span className="flex items-center gap-3">
+          <span className="inline-flex size-10 items-center justify-center rounded-full bg-white/15 transition-colors duration-300 group-hover/rent:bg-white group-hover/rent:text-whatsapp">
+            <WhatsAppIcon className="size-[18px]" />
+          </span>
+          Check availability
+        </span>
+        <ArrowRight className="size-5 transition-transform duration-300 group-hover/rent:translate-x-1" aria-hidden />
+      </button>
+      {sentNote}
+    </form>
+  );
+}

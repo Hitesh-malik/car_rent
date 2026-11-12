@@ -9,13 +9,20 @@ import { cn } from "@/lib/cn";
  * next/image with a shimmer skeleton while loading and a graceful placeholder if the file is missing.
  * Must be rendered inside a positioned parent when using `fill`.
  */
-export function ImageWithFallback({ className, alt, onLoad, onError, ...props }: ImageProps) {
+export function ImageWithFallback({
+  className,
+  alt,
+  onLoad,
+  onError,
+  tone = "dark",
+  ...props
+}: ImageProps & { tone?: "light" | "dark" }) {
   // Preloaded (above-the-fold) images render visible immediately so they never wait on hydration.
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(props.preload ? "loaded" : "loading");
 
   if (status === "error") {
     return (
-      <div role="img" aria-label={alt} className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-surface text-muted">
+      <div role="img" aria-label={alt} className={cn("absolute inset-0 flex flex-col items-center justify-center gap-2", tone === "dark" ? "bg-charcoal text-white/50" : "bg-surface text-muted")}>
         <ImageOff className="size-6" aria-hidden />
         <span className="text-xs">Image coming soon</span>
       </div>
@@ -24,7 +31,7 @@ export function ImageWithFallback({ className, alt, onLoad, onError, ...props }:
 
   return (
     <>
-      {status === "loading" && <div aria-hidden className="skeleton absolute inset-0" />}
+      {status === "loading" && <div aria-hidden className={cn("absolute inset-0", tone === "dark" ? "skeleton-dark" : "skeleton")} />}
       <Image
         {...props}
         alt={alt}
